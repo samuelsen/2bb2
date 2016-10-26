@@ -4,7 +4,8 @@
 Project repository for "INF5750: 2B || !2B"
 
 # Run
-To run wiht hot reloading: 'npm start'
+To install dependencies: 'npm install'
+To run with hot reloading: 'npm start'
 To build and run manually: 'npm run build'
 To build in dev mode, rebuilds changes; 'npm run dev'
 
