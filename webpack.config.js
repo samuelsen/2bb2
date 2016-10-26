@@ -1,45 +1,26 @@
-var webpack = require('webpack');
 var path = require('path');
-
-var BUILD_DIR = path.resolve(__dirname, 'src/dist');
-var COMPONENT_DIR = path.resolve(__dirname, 'src/components');
-var SRC_DIR = path.resolve(__dirname, 'src');
+var webpack = require('webpack');
 
 module.exports = {
+  devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:8000',
+    'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    COMPONENT_DIR + '/index.js'
+    './src/index'
   ],
   output: {
-    path: BUILD_DIR,
-    filename: '/bundle.js',
-    publicPath: 'http://localhost:8000/'
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: [
-          "babel-loader"
-        ]
-      },
-      {
-				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: 'eslint-loader'
-      }
-    ]
-  },
-  eslint: {
-    configFile: './.eslintrc'
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/static/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
-  devServer: {
-    contentBase: SRC_DIR,
-    port: 8000
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loaders: ['react-hot', 'babel'],
+      include: path.join(__dirname, 'src')
+    }]
   }
-}
+};
