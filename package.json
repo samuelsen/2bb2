@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "test": "npm webpack -d"
+    "test": "webpack -d"
   },
   "repository": {
     "type": "git",
