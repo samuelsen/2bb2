@@ -12,6 +12,9 @@ To build in dev mode, rebuilds changes; 'npm run dev'
 # Style framework
 http://materializecss.com/getting-started.html
 
+To read / get the style information, markup: run the application and
+click on the style link in the menu bar. It opens in a new window, and from there you can find the correct markup for a specific layout.
+
 # Modules / componenst
 ## component name
 description of the component, and usage
