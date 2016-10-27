@@ -7,12 +7,13 @@ import { Provider } from 'react-redux';
 
 import reducer from './reducers/todoReducer';
 import { TodoList } from './containers/todoContainer';
+import App from './App';
 
 const store = createStore(reducer);
 
 render(
-  <Provider store={store}>
-    <TodoList />
-  </Provider>,
+    <Provider store={store}>
+        <TodoList />
+    </Provider>,
   document.getElementById('app')
 );
