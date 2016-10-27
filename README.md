@@ -4,14 +4,23 @@
 Project repository for "INF5750: 2B || !2B"
 
 # Run
-To install dependencies: 'npm install'
-To run with hot reloading: 'npm start'
-To build and run manually: 'npm run build'
-To build in dev mode, rebuilds changes; 'npm run dev'
+To install dependencies: ```npm install```
+
+To run with hot reloading: ```npm start```
+
+To build and run manually: ```npm run build```
+
+To build in dev mode, rebuilds changes; ```npm run dev```
+
+# API docs from DHIS2
+https://dhis2.github.io/dhis2-docs/master/en/developer/html/webapi_data_store.html
+
+# Project info
+http://www.uio.no/studier/emner/matnat/ifi/INF5750/h16/assignments/5750projects.html
 
 # Style framework
 http://materializecss.com/getting-started.html
 
-# Modules / componenst
+# Modules / components
 ## component name
 description of the component, and usage
