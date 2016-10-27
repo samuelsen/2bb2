@@ -2,21 +2,21 @@
 
 import { List, Map } from 'immutable';
 
-const init = List([]);
+const init = Map({'todos': List([])});
 
-export default function(todos=init, action) {
+export default function(state=init, action) {
   switch (action.type) {
     case 'ADD_TODO':
-      return todos.push(Map(action.payload));
+      return state.update('todos', todos => todos.push(Map(action.payload)));
     case 'TOGGLE_TODO':
-      return todos.map(t => {
+      return state.update('todos', todos => todos.map(t => {
         if(t.get('id') === action.payload) {
           return t.update('isDone', isDone => !isDone);
         } else {
           return t;
         }
-      });
+      }));
     default:
-        return todos;
+        return state;
   }
 }
