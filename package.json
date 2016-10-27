@@ -4,7 +4,8 @@
   "description": "Browse and update the values in the DHIS2 Data Store. User friendly presentation and navigation. Possibly a way to keep an audit trail of changes and display/visualize statistics regarding the data.",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "npm webpack -d"
   },
   "repository": {
     "type": "git",
