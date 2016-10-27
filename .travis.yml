@@ -7,3 +7,4 @@ install:
 
 notifications:
   slack: 2bb2:1qP52itOjK77sZ2T21y18Jnr
+  email: false
