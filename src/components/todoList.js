@@ -1,7 +1,7 @@
 // src/components.js
 
 import React from 'react';
-
+import App from '../App';
 export function Todo(props) {
 	const { todo } = props;
 	if(todo.isDone) {
@@ -29,15 +29,16 @@ export function TodoList(props) {
 	const toggleClick = id => event => toggleTodo(id);
 
 	return (
-		<div className='todo'>
+        <div className='todo'>
+                <App />
 			<input type='text'
 						className='todo__entry'
 						placeholder='Add todo'
 						onKeyDown={onSubmit} />
-			<ul className='todo__list'>
+			<ul className='collection'>
 				{todos.map(t => (
 					<li key={t.get('id')}
-							className='todo__item'
+							className='collection-item'
 							onClick={toggleClick(t.get('id'))}>
 						<Todo todo={t.toJS()} />
 					</li>
