@@ -24,7 +24,7 @@ export function TodoList(props) {
       addTodo(text);
     }
   };
-
+    
   const toggleClick = id => event => toggleTodo(id);
 
   return (
