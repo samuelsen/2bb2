@@ -5,10 +5,10 @@ import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import reducer from './reducers/todoReducer';
+import rootReducer from './reducers/rootReducer';
 import { TodoList } from './containers/todoContainer';
 
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 render(
   <Provider store={store}>

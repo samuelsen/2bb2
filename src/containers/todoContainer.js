@@ -6,7 +6,7 @@ import { addTodo, toggleTodo } from '../actions/todoActions';
 
 export const TodoList = connect(
   function mapStateToProps(state) {
-    return { todos: state.get('todos') };
+    return { todos: state.todoList.get('todos') };
   },
   function mapDispatchToProps(dispatch) {
     return {
