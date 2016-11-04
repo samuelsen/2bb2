@@ -26,8 +26,8 @@
     </nav>
     <!-- end navigation -->
     <!-- the app renders here -->
-    <div id='app' class="container">
-    </div>
+    <div id='app' class="container"></div>
+    <div id="data"></div>
     <!-- end app render -->
     <!-- scripts -->
     <script src="/static/bundle.js"></script>
@@ -36,6 +36,18 @@
     <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
         $(".button-collapse").sideNav();
+        
+        var username = "admin";
+        var password = "district";
+        
+        $.ajax({
+            type: "GET",
+            url: "https://play.dhis2.org/demo/api/25/dataStore/METADATASTORE/Version_1/",
+            async: false,
+            data: '{"username": "' + username + '", "password" : "' + password + '"}',
+        }).then(function(data){
+            document.getElementById("data").innerHTML = data;
+        });
     </script>
     <!-- end scripts -->
 </body>

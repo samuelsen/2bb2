@@ -1,33 +1,33 @@
-// src/components.js
+// src/components.jsx
 
 import React from 'react';
 export function Todo(props) {
-	const { todo } = props;
-	if(todo.isDone) {
-		return <strike>{todo.text}</strike>;
-	} else {
-		return <span>{todo.text}</span>;
-	}
+  const { todo } = props;
+  if(todo.isDone) {
+    return <strike>{todo.text}</strike>;
+  } else {
+    return <span>{todo.text}</span>;
+  }
 }
 
 export function TodoList(props) {
-	const { todos, toggleTodo, addTodo } = props;
+  const { todos, toggleTodo, addTodo } = props;
 
-	const onSubmit = (event) => {
-		const input = event.target;
-		const text = input.value;
-		const isEnterKey = (event.which == 13);
-		const isLongEnough = text.length > 0;
+  const onSubmit = (event) => {
+    const input = event.target;
+    const text = input.value;
+    const isEnterKey = (event.which == 13);
+    const isLongEnough = text.length > 0;
 
-		if(isEnterKey && isLongEnough) {
-			input.value = '';
-			addTodo(text);
-		}
-	};
+    if(isEnterKey && isLongEnough) {
+      input.value = '';
+      addTodo(text);
+    }
+  };
 
-	const toggleClick = id => event => toggleTodo(id);
+  const toggleClick = id => event => toggleTodo(id);
 
-	return (
+  return (
         <div className='todo'>
 			<input type='text'
 						className='todo__entry'

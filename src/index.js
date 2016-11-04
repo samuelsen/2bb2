@@ -1,4 +1,4 @@
-// src/index.js
+// src/index.jsx
 
 import React from 'react';
 import { render } from 'react-dom';
@@ -11,8 +11,8 @@ import { TodoList } from './containers/todoContainer';
 const store = createStore(reducer);
 
 render(
-    <Provider store={store}>
-        <TodoList />
-    </Provider>,
+  <Provider store={store}>
+    <TodoList />
+  </Provider>,
   document.getElementById('app')
 );
