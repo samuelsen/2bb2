@@ -4,7 +4,7 @@ import { List, Map } from 'immutable';
 
 const init = Map({'todos': List([])});
 
-export default function(state=init, action) {
+export default function todoReducer(state=init, action) {
   switch (action.type) {
     case 'ADD_TODO':
       return state.update('todos', todos => todos.push(Map(action.payload)));
