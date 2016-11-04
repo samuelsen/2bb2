@@ -9,14 +9,14 @@ export function addTodo(text) {
     payload: {
       id: uid(),
       isDone: false,
-      text: text
-    }
+      text: text,
+    },
   };
 }
 
 export function toggleTodo(id) {
   return {
     type: 'TOGGLE_TODO',
-    payload: id
-  }
+    payload: id,
+  };
 }
