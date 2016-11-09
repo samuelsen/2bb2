@@ -1,19 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import CollapsibleList from './components/CollapsibleList';
-import { TodoList } from './containers/todoContainer';
+import { loadData } from './actions/getDHISdata';
 
-const entries = [
-  {namespace: "NAMESPACE1", ids: ["KEY1", "KEY2", "KEY3"]},
-  {namespace: "NAMESPACE2", ids: ["KEY4", "KEY5"]}
-];
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default class App extends React.Component {
   render() {
     return (
       <div>
-        <CollapsibleList entries={entries} />
+        <CollapsibleList />
       </div>
     );
   }
 }
+
+export default connect()(App);
