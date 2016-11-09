@@ -1,14 +1,18 @@
-var username = "admin";
-var password = "district";
+const basicAuth = `Basic ${btoa('admin:district')}`;
 
-export function get (text) {
-    $.ajax({
-        type: "GET",
-        url: "https://play.dhis2.org/demo/api/25/dataStore/METADATASTORE/Version_1/",
-        dataType: 'json',
-        async: false,
-        data: '{"username": "' + username + '", "password" : "' + password + '"}',
-    }).then(function(data){
-        return(data);
-    });
-}
+function loadData(text) {
+  $.ajax({
+    url: "https://play.dhis2.org/demo/api/25/dataStore/" + text,
+    type: "GET",
+    headers: {
+        "Authorization": basicAuth,
+    },
+  })
+  .done(function(data, textStatus, jqXHR) {
+      console.log("HTTP Request Succeeded: " + jqXHR.status);
+      console.log(data);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log("HTTP Request Failed");
+  })
+};
