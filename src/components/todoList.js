@@ -1,7 +1,6 @@
 // src/components.jsx
 
 import React from 'react';
-import App from '../App';
 export function Todo(props) {
   const { todo } = props;
   if(todo.isDone) {
@@ -25,25 +24,26 @@ export function TodoList(props) {
       addTodo(text);
     }
   };
-
+    
   const toggleClick = id => event => toggleTodo(id);
 
   return (
         <div className='todo'>
-                <App />
-      <input type='text'
-            className='todo__entry'
-            placeholder='Add todo'
-            onKeyDown={onSubmit} />
-      <ul className='collection'>
-        {todos.map(t => (
-          <li key={t.get('id')}
-              className='collection-item'
-              onClick={toggleClick(t.get('id'))}>
-            <Todo todo={t.toJS()} />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+			<input type='text'
+						className='todo__entry'
+						placeholder='Add todo'
+						onKeyDown={onSubmit} />
+        <i class='large play_arrow'></i>
+			<div className='collection'>
+				{todos.map(t => (
+					<a key={t.get('id')}
+							className='collection-item text-center'
+							onClick={toggleClick(t.get('id'))}>
+						<Todo todo={t.toJS()} />
+                         <i className="small material-icons pull-right">play_arrow</i>
+					</a>
+				))}
+			</div>
+		</div>
+	);
 }
