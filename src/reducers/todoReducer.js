@@ -1,4 +1,4 @@
-// src/reducer.js
+// src/reducers/todoReducer.js
 
 import { List, Map } from 'immutable';
 

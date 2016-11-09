@@ -6,13 +6,13 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import rootReducer from './reducers/rootReducer';
-import { TodoList } from './containers/todoContainer';
+import App from './App';
 
 const store = createStore(rootReducer);
 
 render(
   <Provider store={store}>
-    <TodoList />
+    <App />
   </Provider>,
   document.getElementById('app')
 );

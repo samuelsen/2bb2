@@ -1,4 +1,4 @@
-// src/rootReducer.js
+// src/reducers/rootReducer.js
 
 import { combineReducers } from 'redux'
 import todoReducer from './todoReducer'
