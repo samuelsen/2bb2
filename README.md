@@ -3,6 +3,16 @@
 # 2bb2
 Project repository for "INF5750: 2B || !2B"
 
+# todo
+## Eirik
+Namespace viewer & redux saga
+
+## Bjørn
+Json / data viewer
+
+## Simen
+Router functonality
+
 # Run
 To install dependencies: ```npm install```
 
