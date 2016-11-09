@@ -33,7 +33,7 @@ export function TodoList(props) {
 						className='todo__entry'
 						placeholder='Add todo'
 						onKeyDown={onSubmit} />
-        <i class='large play_arrow'></i>
+        <i className='material-icons large'>play_arrow</i>
 			<div className='collection'>
 				{todos.map(t => (
 					<a key={t.get('id')}
