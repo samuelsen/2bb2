@@ -1,10 +1,10 @@
-// src/rootReducer.js
+// src/reducers/rootReducer.js
 
-import { combineReducers } from 'redux'
-import todoReducer from './todoReducer'
+import { combineReducers } from 'redux';
+import collapsibleReducer from './collapsibleReducer';
 
 const rootReducer = combineReducers({
-  todoList: todoReducer,
+  collapsibleList: collapsibleReducer,
 });
 
 export default rootReducer;
