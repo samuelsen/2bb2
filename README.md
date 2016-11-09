@@ -5,7 +5,7 @@ Project repository for "INF5750: 2B || !2B"
 
 # todo
 ## Eirik
-Namespace viewer
+Namespace viewer & redux saga
 
 ## Bjørn
 Json / data viewer
