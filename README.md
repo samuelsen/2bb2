@@ -25,6 +25,7 @@ To build in dev mode, rebuilds changes; ```npm run dev```
 ### NB! important
 to be able to fetch data from DHIS play, the url (localhost:3000) has to be approved at: http://play.dhis2.org/demo 
 
+
 Go to system setings (under the buttont with squares) --> Accsess and under `CORS whitelist` add: ```http://localhost:3000```
 
 # API docs from DHIS2
