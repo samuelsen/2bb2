@@ -3,15 +3,24 @@
 import { List, Map } from 'immutable';
 import { loadData } from '../actions/getDHISdata';
 
-const init = Map({'entries': List([{
+const init = Map({'entries': [{
   namespace: "DEFAULT NAMESPACE",
   ids: ["DUMMY 1", "DUMMY 2"]
-}])});
+}]});
 
 export default function collapsibleReducer(state=init, action) {
   switch (action.type) {
-    case 'FETCH_SUCCESSFUL':
-      return state.update('entries', entries => entries.push(Map(action.entries)));
+    case 'NAMESPACES_FETCHED':
+      console.log(action.entries);
+      return state.set('entries', action.entries);
+    case 'KEYS_FETCHED':
+      console.log(action.keys);
+      return state.update('entries', entries => entries.map( entry => {
+          return { namespace: entry.namespace , ids: ["lol"] }
+      }));
+    case 'FETCH_FAILED':
+      console.log(action.error);
+      return state;
     default:
       return state;
   }
