@@ -20,13 +20,18 @@ const store = createStore(
 );
 sagaMiddleware.run(rootSaga);
 
-store.dispatch({type: 'FETCH_NAMESPACES'});
-store.dispatch({type: 'FETCH_KEYS', namespace: "METADATASTORE"});
-store.dispatch({type: 'FETCH_KEYS', namespace: "social-media-video"});
-store.dispatch({type: 'FETCH_KEYS', namespace: "LOLZ"});
-
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store)
+
+// TEST DATA (UNCOMMENT yield delay(1000); IN SAGAS.JS)
+//store.dispatch({type: 'FETCH_NAMESPACES'});
+//store.dispatch({type: 'FETCH_KEYS', namespace: "METADATASTORE"});
+//store.dispatch({type: 'FETCH_KEYS', namespace: "social-media-video"});
+//store.dispatch({type: 'FETCH_KEYS', namespace: "LOLZ"});
+//store.dispatch({type: 'FETCH_DATA', namespace: "METADATASTORE", key: "Version_1"});
+//store.dispatch({type: 'FETCH_DATA', namespace: "social-media-video", key: "hjcF14oVjo4"});
+//store.dispatch({type: 'CREATE_DATA', namespace: "LOLZ", key: "Version_Y", body: "{ \"value\": \"TEST\"}"});
+//store.dispatch({type: 'FETCH_DATA', namespace: "METADATASTORE", key: "Version_Y"});
 
 render(
     <Provider store={store}>

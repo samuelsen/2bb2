@@ -2,6 +2,7 @@ import { takeEvery, delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
 import { loadData } from './actions/getDHISdata';
+import { postData } from './actions/postDHISdata';
 
 /* DATABASE OVERVIEW:
  *
@@ -30,8 +31,8 @@ function* fetchNamespaces() {
 /* FETCH_KEYS:
  * Fetches all keys in a namespace */
 function* fetchKeys(action) {
-    yield delay(1000);
   try {
+    //yield delay(1000);
     const data = yield call(loadData, action.namespace);
     yield put({
       type: "KEYS_FETCHED",
@@ -47,6 +48,7 @@ function* fetchKeys(action) {
  * Fetches the data referenced by (namespace, key) */
 function* fetchData(action) {
   try {
+    //yield delay(1000);
     let url = action.namespace + "/" + action.key;
     const data = yield call(loadData, url);
     yield put({
@@ -69,9 +71,20 @@ function* deleteData() {
 
 /* CREATE_DATA:
  * Stores data with (namespace, key) reference */
-function* createData() {
-  console.log("INSIDE CREATE_DATA");
-  /* TODO */
+function* createData(action) {
+  try {
+    let url = action.namespace + "/" + action.key;
+    let body = action.body;
+    const data = yield call(postData, url, body);
+    yield put({
+      type: "DATA_CREATED",
+      namespace: action.namespace,
+      key: action.key,
+      data: body
+    });
+  } catch (error) {
+    yield put({type: "CREATE_FAILED", error});
+  }
 }
 
 /* MODIFY_DATA:
