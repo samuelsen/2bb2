@@ -23,6 +23,12 @@ export default function collapsibleReducer(state=init, action) {
     case 'DATA_CREATED':
       console.log(action.data);
       return state;
+    case 'NAMESPACE_DELETED':
+      console.log(action.data);
+      return state;
+    case 'KEY_DELETED':
+      console.log(action.data);
+      return state;
     case 'FETCH_FAILED':
     case 'CREATE_FAILED':
     case 'DELETE_FAILED':
