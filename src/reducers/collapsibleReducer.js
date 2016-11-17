@@ -20,8 +20,14 @@ export default function collapsibleReducer(state=init, action) {
     case 'DATA_FETCHED':
       console.log(action.data);
       return state;
+    case 'DATA_CREATED':
+      console.log(action.data);
+      return state;
     case 'FETCH_FAILED':
-      console.log(action.error);
+    case 'CREATE_FAILED':
+    case 'DELETE_FAILED':
+    case 'MODIFY_FAILED':
+      console.log(action.error.responseText);
       return state;
     default:
       return state;
