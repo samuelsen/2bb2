@@ -30,6 +30,7 @@ function* fetchNamespaces() {
 /* FETCH_KEYS:
  * Fetches all keys in a namespace */
 function* fetchKeys(action) {
+    yield delay(1000);
   try {
     const data = yield call(loadData, action.namespace);
     yield put({

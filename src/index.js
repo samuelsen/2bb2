@@ -20,6 +20,11 @@ const store = createStore(
 );
 sagaMiddleware.run(rootSaga);
 
+store.dispatch({type: 'FETCH_NAMESPACES'});
+store.dispatch({type: 'FETCH_KEYS', namespace: "METADATASTORE"});
+store.dispatch({type: 'FETCH_KEYS', namespace: "social-media-video"});
+store.dispatch({type: 'FETCH_KEYS', namespace: "LOLZ"});
+
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store)
 
