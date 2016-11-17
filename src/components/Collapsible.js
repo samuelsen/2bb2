@@ -31,7 +31,7 @@ export default class Collapsible extends Component {
             this.state.open ? "trending_down" : "trending_flat"
         );
     }
-
+    
     render() {
         return (
             <li>
