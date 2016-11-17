@@ -9,7 +9,7 @@ export function loadData(text) {
     headers: {
         "Authorization": basicAuth,
     },
-  }).done(function(data, textStatus, jqXHR) {
+  }).then(function(data, textStatus, jqXHR) {
     //console.log("HTTP Request Succeeded: " + jqXHR.status);
     //console.log(data);
     return data;

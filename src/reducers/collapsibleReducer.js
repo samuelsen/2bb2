@@ -10,8 +10,19 @@ const init = Map({'entries': List([{
 
 export default function collapsibleReducer(state=init, action) {
   switch (action.type) {
-    case 'FETCH_SUCCESSFUL':
-      return state.update('entries', entries => entries.push(Map(action.entries)));
+    case 'NAMESPACES_FETCHED':
+      return state.set('entries', List(action.entries));
+    case 'KEYS_FETCHED':
+      return state.update('entries', entries => entries.update(
+        entries.findIndex(item => item.namespace === action.namespace),
+        entry => { return { namespace: entry.namespace, ids: action.keys } }
+      ));
+    case 'DATA_FETCHED':
+      console.log(action.data);
+      return state;
+    case 'FETCH_FAILED':
+      console.log(action.error);
+      return state;
     default:
       return state;
   }

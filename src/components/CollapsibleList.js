@@ -14,7 +14,6 @@ class CollapsibleList extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props);
   }
 
   props: {
