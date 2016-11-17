@@ -1,9 +1,6 @@
 // src/components/Collapsible.js
 
-import React, {
-    Component
-}
-from 'react';
+import React, { Component } from 'react';
 
 export default class Collapsible extends Component {
 
@@ -36,20 +33,17 @@ export default class Collapsible extends Component {
     }
 
     render() {
-        return ( < li >
-            < div className = "collapsible-header"
-            onClick = {
-                this.toggleOpen.bind(this)
-            } >
-            < i className = "material-icons" > {
-                this.getIcon()
-            } < /i> {
-            this.props.namespace
-        } < /div> < div className = "collapsible-body" > {
-        this.props.ids.map(id => < p key = {
-                id
-            } > {
-                id
-            } < /p>)} < /div > < /li>);
-        }
+        return (
+            <li>
+                <div className = "collapsible-header" onClick = { this.toggleOpen.bind(this)} >
+                <i className = "material-icons" > {this.getIcon()}</i> 
+                {
+                    this.props.namespace
+                } 
+                </div>
+                <div className = "collapsible-body" > 
+                    {this.props.ids.map(id => <p key = {id}>{id}</p> )}
+                </div > 
+            </li>
+        )}
     }
