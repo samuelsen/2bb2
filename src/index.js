@@ -30,8 +30,11 @@ const history = syncHistoryWithStore(browserHistory, store)
 //store.dispatch({type: 'FETCH_KEYS', namespace: "LOLZ"});
 //store.dispatch({type: 'FETCH_DATA', namespace: "METADATASTORE", key: "Version_1"});
 //store.dispatch({type: 'FETCH_DATA', namespace: "social-media-video", key: "hjcF14oVjo4"});
+//store.dispatch({type: 'CREATE_DATA', namespace: "LOLZ", key: "Version_X", body: "{ \"value\": \"TEST\"}"});
 //store.dispatch({type: 'CREATE_DATA', namespace: "LOLZ", key: "Version_Y", body: "{ \"value\": \"TEST\"}"});
 //store.dispatch({type: 'FETCH_DATA', namespace: "METADATASTORE", key: "Version_Y"});
+//store.dispatch({type: 'DELETE_KEY', namespace: "LOLZ", key:"Version_X"});
+//store.dispatch({type: 'DELETE_NAMESPACE', namespace: "LOLZ"});
 
 render(
     <Provider store={store}>

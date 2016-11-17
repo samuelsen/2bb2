@@ -3,6 +3,7 @@ import { call, put } from 'redux-saga/effects';
 
 import { loadData } from './actions/getDHISdata';
 import { postData } from './actions/postDHISdata';
+import { deleteData } from './actions/deleteDHISdata';
 
 /* DATABASE OVERVIEW:
  *
@@ -33,7 +34,8 @@ function* fetchNamespaces() {
 function* fetchKeys(action) {
   try {
     //yield delay(1000);
-    const data = yield call(loadData, action.namespace);
+    let url = action.namespace;
+    const data = yield call(loadData, url);
     yield put({
       type: "KEYS_FETCHED",
       namespace: action.namespace,
@@ -62,11 +64,37 @@ function* fetchData(action) {
   }
 }
 
+/* DELETE_KEYS:
+ * Deletes all keys referenced by (namespace) */
+function* deleteNamespace(action) {
+  try {
+    let url = action.namespace;
+    const data = yield call(deleteData, url);
+    yield put({
+      type: "NAMESPACE_DELETED",
+      namespace: action.namespace,
+      data: data
+    });
+  } catch (error) {
+    yield put({type: "DELETE_FAILED", error});
+  }
+}
+
 /* DELETE_DATA:
  * Deletes the data referenced by (namespace, key) */
-function* deleteData() {
-  console.log("INSIDE DELETE_DATA");
-  /* TODO */
+function* deleteKey(action) {
+  try {
+    let url = action.namespace + "/" + action.key;
+    const data = yield call(deleteData, url);
+    yield put({
+      type: "KEY_DELETED",
+      namespace: action.namespace,
+      key: action.key,
+      data: data
+    });
+  } catch (error) {
+    yield put({type: "DELETE_FAILED", error});
+  }
 }
 
 /* CREATE_DATA:
@@ -100,7 +128,8 @@ export default function* rootSaga() {
     takeEvery('FETCH_NAMESPACES', fetchNamespaces),
     takeEvery('FETCH_KEYS', fetchKeys),
     takeEvery('FETCH_DATA', fetchData),
-    takeEvery('DELETE_DATA', deleteData),
+    takeEvery('DELETE_NAMESPACE', deleteNamespace),
+    takeEvery('DELETE_KEY', deleteKey),
     takeEvery('CREATE_DATA', createData),
     takeEvery('MODIFY_DATA', modifyData)
   ];
