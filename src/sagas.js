@@ -15,39 +15,48 @@ import { loadData } from './actions/getDHISdata';
  * Fetches all namespaces in the database */
 function* fetchNamespaces() {
   try {
-    const namespaces = yield call(loadData, "");
-    const entries = [];
-    for (var i = 0; i < namespaces.length; i++) {
-      entries.push({
-        namespace: namespaces[i],
-        ids: yield call(loadData, namespaces[i])
-      });
-    }
+    const data = yield call(loadData, "");
     yield put({
       type: "NAMESPACES_FETCHED",
-      entries: entries
+      entries: data.map( namespace => {
+        return { namespace, ids: [] }
+      })
     });
   } catch (error) {
     yield put({type: "FETCH_FAILED", error});
   }
-  console.log("INSIDE FETCH_NAMESPACES");
 }
 
 /* FETCH_KEYS:
  * Fetches all keys in a namespace */
 function* fetchKeys(action) {
-  yield delay(2000);
-  console.log(action);
-  yield put({type: "KEYS_FETCHED", namespace: action.namespace, keys: ["hehe", "hoho"]});
-  console.log("INSIDE FETCH_KEYS");
-  /* TODO */
+  try {
+    const data = yield call(loadData, action.namespace);
+    yield put({
+      type: "KEYS_FETCHED",
+      namespace: action.namespace,
+      keys: data
+    });
+  } catch (error) {
+    yield put({type: "FETCH_FAILED", error});
+  }
 }
 
 /* FETCH_DATA:
  * Fetches the data referenced by (namespace, key) */
-function* fetchData() {
-  console.log("INSIDE FETCH_DATA");
-  /* TODO */
+function* fetchData(action) {
+  try {
+    let url = action.namespace + "/" + action.key;
+    const data = yield call(loadData, url);
+    yield put({
+      type: "DATA_FETCHED",
+      namespace: action.namespace,
+      key: action.key,
+      data: data
+    });
+  } catch (error) {
+    yield put({type: "FETCH_FAILED", error});
+  }
 }
 
 /* DELETE_DATA:

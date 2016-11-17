@@ -17,13 +17,6 @@ const store = createStore(
 );
 sagaMiddleware.run(rootSaga);
 
-store.dispatch({type: 'FETCH_NAMESPACES'});
-store.dispatch({type: 'FETCH_KEYS', namespace: "METADATASTORE"});
-store.dispatch({type: 'FETCH_DATA'});
-store.dispatch({type: 'CREATE_DATA'});
-store.dispatch({type: 'DELETE_DATA'});
-store.dispatch({type: 'MODIFY_DATA'});
-
 render(
   <Provider store={store}>
     <App />
