@@ -5,11 +5,6 @@ import { connect } from 'react-redux';
 import Collapsible from './Collapsible';
 
 class CollapsibleList extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   props: {
     entries: [{
       namespace: string,
@@ -19,21 +14,25 @@ class CollapsibleList extends Component {
 
   render() {
     return (
-        <div>
-        < ul className = "collapsible" data-collapsible = "expandable" >
-        {
-            this.props.entries && this.props.entries.map(
-                entry => < Collapsible key = {entry.namespace} namespace = {entry.namespace}ids = {entry.ids}/>
-            )
-        }
+      <div>
+        <ul className="collapsible" data-collapsible="expandable">
+          {this.props.entries && this.props.entries.map(
+            entry =>
+              <Collapsible
+                key={entry.namespace}
+                namespace={entry.namespace}
+                ids={entry.ids}
+              />
+          )}
         </ul>
-        </div>
-  )}
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {
   return {
-    entries: state.collapsibleList.get('entries')
+    entries: state.collapsibleList.get('entries'),
   };
 }
 

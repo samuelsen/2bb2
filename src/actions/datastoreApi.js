@@ -1,75 +1,67 @@
 const basicAuth = `Basic ${btoa('admin:district')}`;
 
-var $ = require('jquery');
+const $ = require('jquery');
+
+const api = 'https://play.dhis2.org/demo/api/25/dataStore/';
 
 /* Issues a PUT-request to the DHIS datastore */
-export function putData(text, data) {
+export function putData(text, body) {
   return $.ajax({
-    url: "https://play.dhis2.org/demo/api/25/dataStore/" + text,
-    type: "PUT",
-    data: data,
+    url: `${api}${text}`,
+    type: 'PUT',
+    data: body,
     headers: {
-      "Authorization": basicAuth,
-      "Content-Type": "application/json"
+      Authorization: basicAuth,
+      'Content-Type': 'application/json',
     },
-  }).then(function(data, textStatus, jqXHR) {
-    //console.log("HTTP Request Succeeded: " + jqXHR.status);
-    //console.log(data);
-    return data;
-  }).fail(function(jqXHR, textStatus, errorThrown) {
-    console.log("HTTP Request Failed: " + jqXHR.status);
-  })
+  }).then(data => data)
+  .fail((jqXHR, textStatus, errorThrown) => {
+    console.log(`HTTP Request Failed: ${jqXHR.status}`);
+  });
 }
 
 /* Issues a DELETE-request to the DHIS datastore */
 export function deleteData(text) {
   return $.ajax({
-    url: "https://play.dhis2.org/demo/api/25/dataStore/" + text,
-    type: "DELETE",
+    url: `${api}${text}`,
+    type: 'DELETE',
     headers: {
-      "Authorization": basicAuth,
+      Authorization: basicAuth,
     },
-  }).then(function(data, textStatus, jqXHR) {
-    //console.log("HTTP Request Succeeded: " + jqXHR.status);
-    //console.log(data);
-    return data;
-  }).fail(function(jqXHR, textStatus, errorThrown) {
-    console.log("HTTP Request Failed: " + jqXHR.status);
-  })
+  }).then(data => data)
+  .fail((jqXHR, textStatus, errorThrown) => {
+    console.log(`HTTP Request Failed: ${jqXHR.status}`);
+  });
 }
 
 /* Issues a GET-request to the DHIS datastore */
 export function loadData(text) {
   return $.ajax({
-    url: "https://play.dhis2.org/demo/api/25/dataStore/" + text,
-    type: "GET",
+    url: `${api}${text}`,
+    type: 'GET',
     headers: {
-        "Authorization": basicAuth,
+      Authorization: basicAuth,
     },
-  }).then(function(data, textStatus, jqXHR) {
-    //console.log("HTTP Request Succeeded: " + jqXHR.status);
-    //console.log(data);
-    return data;
-  }).fail(function(jqXHR, textStatus, errorThrown) {
-    console.log("HTTP Request Failed");
-  })
-};
+  }).then(data => data)
+  .fail((jqXHR, textStatus, errorThrown) => {
+    console.log(`HTTP Request Failed: ${jqXHR.status}`);
+  });
+}
 
 /* Issues a POST-request to the DHIS datastore */
-export function postData(text, data) {
+export function postData(text, body) {
   return $.ajax({
-    url: "https://play.dhis2.org/demo/api/25/dataStore/" + text,
-    type: "POST",
-    data: data,
+    url: `${api}${text}`,
+    type: 'POST',
+    data: body,
     headers: {
-      "Authorization": basicAuth,
-      "Content-Type": "application/json"
+      Authorization: basicAuth,
+      'Content-Type': 'application/json',
     },
-  }).then(function(data, textStatus, jqXHR) {
-    //console.log("HTTP Request Succeeded: " + jqXHR.status);
-    //console.log(data);
+  }).then((data) => {
+    window.location = `/viewData/${text}`;
     return data;
-  }).fail(function(jqXHR, textStatus, errorThrown) {
-    console.log("HTTP Request Failed: " + jqXHR.status);
-  })
+  }).fail((jqXHR, textStatus, errorThrown) => {
+    console.log(`HTTP Request Failed: ${jqXHR.status}`);
+  });
 }
