@@ -37,7 +37,7 @@ class Test extends React.Component {
         <div>
             <h1>Hello test comp</h1>
             <p>Getting namespace value: props.params.namespace <br />Getting key value: props.params.key</p>
-            <p><b>URL Values</b>:<br />Namespace: {this.props.params.namespace}<br />Key:{this.props.params.key}</p>
+            <p><b>URL Values</b>:<br />Namespace: {this.props.params.namespace}<br />Key: {this.props.params.key}</p>
             <p><b>Value at the given &#60;namespace&#62;/&#60;key&#62; :</b> <span id="value"></span></p>
         </div>
         );
