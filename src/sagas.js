@@ -4,6 +4,7 @@ import { call, put } from 'redux-saga/effects';
 import { loadData } from './actions/getDHISdata';
 import { postData } from './actions/postDHISdata';
 import { deleteData } from './actions/deleteDHISdata';
+import { putData } from './actions/putDHISdata';
 
 /* DATABASE OVERVIEW:
  *
@@ -33,7 +34,7 @@ function* fetchNamespaces() {
  * Fetches all keys in a namespace */
 function* fetchKeys(action) {
   try {
-    //yield delay(1000);
+    yield delay(1000);
     let url = action.namespace;
     const data = yield call(loadData, url);
     yield put({
@@ -50,7 +51,7 @@ function* fetchKeys(action) {
  * Fetches the data referenced by (namespace, key) */
 function* fetchData(action) {
   try {
-    //yield delay(1000);
+    yield delay(1000);
     let url = action.namespace + "/" + action.key;
     const data = yield call(loadData, url);
     yield put({
@@ -117,9 +118,21 @@ function* createData(action) {
 
 /* MODIFY_DATA:
  * Puts changes to data referenced by (namespace, key) */
-function* modifyData() {
+function* modifyData(action) {
   console.log("INSIDE MODIFY_DATA");
-  /* TODO */
+  try {
+    let url = action.namespace + "/" + action.key;
+    let body = action.body;
+    const data = yield call(putData, url, body);
+    yield put({
+      type: "DATA_MODIFIED",
+      namespace: action.namespace,
+      key: action.key,
+      data: body
+    });
+  } catch (error) {
+    yield put({type: "MODIFY_FAILED", error});
+  }
 }
 
 /* ROOT SAGA */
