@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as InspectorActions from './../../actions/Inspector';
 import { connect } from 'react-redux';
 
+import TypePicker from './TypePicker';
+
 class NumberViewer extends Component{
     constructor(props){
         super(props);
@@ -16,7 +18,12 @@ class NumberViewer extends Component{
     render(){
         const { path, number, updateElement } = this.props;
 
-        return (<input type="number" pattern="[0-9]*" inputMode="numeric" value={number} onChange={event => updateElement(path, Number(event.target.value))}/>);
+        return (
+            <div>
+                <input type="number" pattern="[0-9]*" inputMode="numeric" value={number} onChange={event => updateElement(path, Number(event.target.value))}/>
+                <TypePicker path={path} type="number" />
+            </div>
+        );
     }
 }
 

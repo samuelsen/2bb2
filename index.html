@@ -26,7 +26,7 @@
     </nav>
     <!-- end navigation -->
     <!-- the app renders here -->
-    <div id='app' class="container"></div>
+    <div id='app' class="container"></div> 
     <div id="data"></div>
     <!-- end app render -->
     <!-- scripts -->
@@ -36,6 +36,9 @@
     <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
         $(".button-collapse").sideNav();
+        $(document).ready(function() {
+            $('select').material_select();
+        });
     </script>
     <!-- end scripts -->
 </body>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as InspectorActions from './../../actions/Inspector';
 import { connect } from 'react-redux';
 
+import TypePicker from './TypePicker';
+
 class StringViewer extends Component{
     constructor(props){
         super(props);
@@ -11,13 +13,17 @@ class StringViewer extends Component{
         path: object,
         text: string,
         updateElement: React.PropTypes.func.isRequired,
+        setType: React.PropTypes.func.isRequired,
     }
 
     render(){
-        const { path, text, updateElement } = this.props;
+        const { path, text, updateElement, setType } = this.props;
 
         return (
-                <input value={text} onChange={event => updateElement(path, event.target.value)} type="text"/>
+            <div>
+                <input value={text} onChange={event => updateElement(path, event.target.value)} type="text"/>   
+                <TypePicker path={path} type="string" />
+            </div>
         );
     }
 }

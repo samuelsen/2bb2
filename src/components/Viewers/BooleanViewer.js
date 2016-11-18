@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import TypePicker from './TypePicker';
+
 export default class BooleanViewer extends Component{
     constructor(props){
         super(props);
@@ -15,6 +17,9 @@ export default class BooleanViewer extends Component{
         if(this.props.value)
             value = "True";
 
-        return (<div>{value}</div>);
+        return (<div>
+                    {value}   
+                    <TypePicker path={path} type="boolean" />
+                </div>);
     }
 }

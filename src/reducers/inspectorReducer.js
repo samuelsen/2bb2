@@ -15,6 +15,8 @@ function updateElement(target, elementPath, newValue){
 export default function inspectorReducer(state=init, action) {
   switch (action.type) {
     case 'UPDATE_ELEMENT':
+      if(action.path.count() == 0)
+        return state.update('target', (target) => action.newValue);
       return state.update('target', (target) => target.updateIn(action.path, (val) => action.newValue));
     case 'UPDATE_NAME':
       var name = action.path.last();

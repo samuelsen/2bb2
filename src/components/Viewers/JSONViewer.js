@@ -8,6 +8,7 @@ import NumberViewer from './NumberViewer';
 import BooleanViewer from './BooleanViewer';
 import PairViewer from './PairViewer';
 import ObjectViewer from './ObjectViewer';
+import ArrayViewer from './ArrayViewer';
 
 export default class JSONViewer extends Component {
 
@@ -23,9 +24,15 @@ export default class JSONViewer extends Component {
   getContent(){
     const {path, target} = this.props;
 
-    if(Map.isMap(target) || List.isList(target)){
+    if(Map.isMap(target)){
       return (
         <ObjectViewer path={path} target={target}/>
+      );
+    }
+
+    if(List.isList(target)){
+      return (
+        <ArrayViewer path={path} target={target}/>
       );
     }
 
@@ -42,7 +49,7 @@ export default class JSONViewer extends Component {
       case "boolean":return (
           <BooleanViewer path={path} value={target}/>
       );
-      default: return (<p> this should not happen :( </p>); 
+      default: return (<p> {target.toString()}</p>); 
     }
   }
 

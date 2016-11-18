@@ -52,6 +52,7 @@ class PairViewer extends Component {
       nameElement = <input 
         defaultValue={name} 
         onBlur={event => updateName(path, event.target.value)}
+        onClick={event => event.stopPropogation()}
         type="text"
       />; 
 

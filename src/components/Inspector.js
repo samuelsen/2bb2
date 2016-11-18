@@ -31,7 +31,13 @@ class Inspector extends Component {
     return (<div>
               {textArea}                
               <button className="btn waves-effect waves-light" onClick={event => setTarget(Immutable.fromJS(JSON.parse($("textarea#jsonText").val())))}>Import</button>
-              <button className="btn waves-effect waves-light" onClick={event => $("textarea#jsonText").val(JSON.stringify(target.toJS()))}>Export</button>
+              <button className="btn waves-effect waves-light" onClick={event => {
+                console.log(target);
+                if(typeof target == "object")
+                  return $("textarea#jsonText").val(JSON.stringify(target.toJS()));
+                else
+                  return $("textarea#jsonText").val(JSON.stringify(target));
+              }}>Export</button>
               <JSONViewer path={List([])} target={target}/>
             </div>); 
   }

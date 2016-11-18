@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PairViewer from './PairViewer';
 import TypePicker from './TypePicker';
 
-class ObjectViewer extends Component{
+class ArrayViewer extends Component{
     constructor(props){
         super(props);
     }
@@ -20,13 +20,7 @@ class ObjectViewer extends Component{
     render(){
         const { path, target, updateElement, addElement } = this.props;
 
-        var values = target.keySeq().toArray().sort((a,b) => {
-            if(a == "")
-                return 1;
-            else if(b == "")
-                return -1;
-            else return a > b;
-        });
+        var values = target.keySeq().toArray();
 
         return (
             <div>
@@ -36,10 +30,10 @@ class ObjectViewer extends Component{
                     )}
                     <a className="btn-floating btn-medium waves-effect waves-light red right" href="#addModal" onClick={event => addElement(path)} style={{margin: 5}} ><i className="material-icons">add</i></a>
                 </ul>   
-                <TypePicker path={path} type="object" />
+                <TypePicker path={path} type="array" />
             </div>
         );
     }
 }
 
-export default connect(null, InspectorActions)(ObjectViewer);
+export default connect(null, InspectorActions)(ArrayViewer);

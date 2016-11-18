@@ -1,4 +1,6 @@
 
+import {Map, List} from 'immutable';
+
 export function updateElement(path, newValue){
     return {
         type: "UPDATE_ELEMENT",
@@ -27,5 +29,23 @@ export function addElement(path)
     return {
         type: "ADD_ELEMENT",
         path: path,
+    };
+}
+
+export function setType(path, type){
+    var val = null;
+
+    switch(type){
+        case "string": val = ""; break;
+        case "number": val = 0; break;
+        case "object": val = Map({}); break;
+        case "array": val = List([]); break;
+        case "boolean": val = true; break;
+    }
+
+    return {
+        type: "UPDATE_ELEMENT",
+        path: path,
+        newValue: val,
     };
 }
