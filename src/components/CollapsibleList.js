@@ -20,12 +20,12 @@ class CollapsibleList extends Component {
   render() {
     return (
         <div>
-        < ul className = "collapsible" data-collapsible = "expandable" > 
+        < ul className = "collapsible" data-collapsible = "expandable" >
         {
             this.props.entries && this.props.entries.map(
                 entry => < Collapsible key = {entry.namespace} namespace = {entry.namespace}ids = {entry.ids}/>
             )
-        } 
+        }
         </ul>
         </div>
   )}

@@ -1,22 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadData } from '../actions/getDHISdata';
+import { loadData } from '../actions/datastoreApi';
 
 
-class Test extends React.Component {    
+class Test extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
-        
+
         console.log(props.params.namespace);
         console.log(props.params.key);
         console.log(props.params.namespace+"/"+props.params.key);
-        
+
         loadData(props.params.namespace+"/"+props.params.key)
         .then(function(data){
             console.log(data);
             //data.map( v => document.getElementById('value').innerHTML = document.getElementById('value').innerHTML + v)
-            
+
             $.each(data, function(k, v) {
                 if( v === '[object Object]' || v === '[object Object]' ) {
                         console.log('array');
@@ -24,10 +24,10 @@ class Test extends React.Component {
                     document.getElementById('value').innerHTML = document.getElementById('value').innerHTML + "<p>" + k + " : </p>"
                 }
             });
-            
+
         });
-    }    
-    
+    }
+
     state: {
         value: String
     }

@@ -1,7 +1,6 @@
 // src/reducers/todoReducer.js
 
 import { List, Map } from 'immutable';
-import { loadData } from '../actions/getDHISdata';
 
 const init = Map({'entries': List([{
   namespace: "DEFAULT NAMESPACE",
