@@ -1,47 +1,56 @@
 import React, { Component } from 'react';
-import { postData } from '../actions/datastoreApi';
 import { connect } from 'react-redux';
-import * as saga from '../sagas.js'
 
 class Create extends Component {
-      
-  save(e){
+
+  constructor(props) {
+    super(props);
+    this.save = this.save.bind(this);
+  }
+
+  props: {
+    createData: () => {},
+  }
+
+  save(e) {
     e.preventDefault();
-    
     const name = document.getElementById('Namespace').value;
-    const newKey = document.getElementById('Key').value;  
-    console.log(name);
-    console.log(newKey);
-            
+    const newKey = document.getElementById('Key').value;
     this.props.createData(name, newKey);
   }
-    
-  render(){
-    return(
-      <form className="col s12" onSubmit={this.save.bind(this)}>
+
+  render() {
+    return (
+      <form className="col s12" onSubmit={this.save}>
         <div className="row">
           <div className="input-field col s12">
             <input id="Namespace" type="text" className="validate" />
-            <label>Namespace</label>
+            <label htmlFor="Namespace">Namespace</label>
           </div>
         </div>
         <div className="row">
           <div className="input-field col s12">
             <input id="Key" type="text" className="validate" />
-            <label>Key</label>
+            <label htmlFor="Key">Key</label>
           </div>
         </div>
         <div className="row">
-          <input className="btn right waves-effect waves-light red" type="submit" value="Save"/>
+          <input className="btn right waves-effect waves-light red" type="submit" value="Save" />
         </div>
       </form>
-    )
+    );
   }
 }
 
-export default connect(
-  null, 
-  (dispatch) => ({
-    createData: (name, newKey) => dispatch({type: 'CREATE_DATA', namespace: name, key: newKey, body: "{}"})
-  })
-)(Create)
+function mapDispatchToProps(dispatch) {
+  return {
+    createData: (namespace, key) => dispatch({
+      type: 'CREATE_DATA',
+      namespace,
+      key,
+      body: '{}',
+    }),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Create);

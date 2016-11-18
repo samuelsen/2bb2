@@ -15,15 +15,13 @@ import { loadData, postData, deleteData, putData } from './actions/datastoreApi'
  * Fetches all namespaces in the database */
 function* fetchNamespaces() {
   try {
-    const data = yield call(loadData, "");
+    const data = yield call(loadData, '');
     yield put({
-      type: "NAMESPACES_FETCHED",
-      entries: data.map( namespace => {
-        return { namespace, ids: [] }
-      })
+      type: 'NAMESPACES_FETCHED',
+      entries: data.map(namespace => ({ namespace, ids: [] })),
     });
   } catch (error) {
-    yield put({type: "FETCH_FAILED", error});
+    yield put({ type: 'FETCH_FAILED', error });
   }
 }
 
@@ -32,15 +30,15 @@ function* fetchNamespaces() {
 function* fetchKeys(action) {
   try {
     yield delay(1000);
-    let url = action.namespace;
+    const url = action.namespace;
     const data = yield call(loadData, url);
     yield put({
-      type: "KEYS_FETCHED",
+      type: 'KEYS_FETCHED',
       namespace: action.namespace,
-      keys: data
+      keys: data,
     });
   } catch (error) {
-    yield put({type: "FETCH_FAILED", error});
+    yield put({ type: 'FETCH_FAILED', error });
   }
 }
 
@@ -49,16 +47,16 @@ function* fetchKeys(action) {
 function* fetchData(action) {
   try {
     yield delay(1000);
-    let url = action.namespace + "/" + action.key;
+    const url = `${action.namespace}/${action.key}`;
     const data = yield call(loadData, url);
     yield put({
-      type: "DATA_FETCHED",
+      type: 'DATA_FETCHED',
       namespace: action.namespace,
       key: action.key,
-      data: data
+      data,
     });
   } catch (error) {
-    yield put({type: "FETCH_FAILED", error});
+    yield put({ type: 'FETCH_FAILED', error });
   }
 }
 
@@ -66,15 +64,15 @@ function* fetchData(action) {
  * Deletes all keys referenced by (namespace) */
 function* deleteNamespace(action) {
   try {
-    let url = action.namespace;
+    const url = action.namespace;
     const data = yield call(deleteData, url);
     yield put({
-      type: "NAMESPACE_DELETED",
+      type: 'NAMESPACE_DELETED',
       namespace: action.namespace,
-      data: data
+      data,
     });
   } catch (error) {
-    yield put({type: "DELETE_FAILED", error});
+    yield put({ type: 'DELETE_FAILED', error });
   }
 }
 
@@ -82,16 +80,16 @@ function* deleteNamespace(action) {
  * Deletes the data referenced by (namespace, key) */
 function* deleteKey(action) {
   try {
-    let url = action.namespace + "/" + action.key;
+    const url = `${action.namespace}/${action.key}`;
     const data = yield call(deleteData, url);
     yield put({
-      type: "KEY_DELETED",
+      type: 'KEY_DELETED',
       namespace: action.namespace,
       key: action.key,
-      data: data
+      data,
     });
   } catch (error) {
-    yield put({type: "DELETE_FAILED", error});
+    yield put({ type: 'DELETE_FAILED', error });
   }
 }
 
@@ -99,36 +97,35 @@ function* deleteKey(action) {
  * Stores data with (namespace, key) reference */
 function* createData(action) {
   try {
-    let url = action.namespace + "/" + action.key;
-    let body = action.body;
-    const data = yield call(postData, url, body);
+    const url = `${action.namespace}/${action.key}`;
+    const body = action.body;
+    yield call(postData, url, body);
     yield put({
-      type: "DATA_CREATED",
+      type: 'DATA_CREATED',
       namespace: action.namespace,
       key: action.key,
-      data: body
+      data: body,
     });
   } catch (error) {
-    yield put({type: "CREATE_FAILED", error});
+    yield put({ type: 'CREATE_FAILED', error });
   }
 }
 
 /* MODIFY_DATA:
  * Puts changes to data referenced by (namespace, key) */
 function* modifyData(action) {
-  console.log("INSIDE MODIFY_DATA");
   try {
-    let url = action.namespace + "/" + action.key;
-    let body = action.body;
-    const data = yield call(putData, url, body);
+    const url = `${action.namespace}/${action.key}`;
+    const body = action.body;
+    yield call(putData, url, body);
     yield put({
-      type: "DATA_MODIFIED",
+      type: 'DATA_MODIFIED',
       namespace: action.namespace,
       key: action.key,
-      data: body
+      data: body,
     });
   } catch (error) {
-    yield put({type: "MODIFY_FAILED", error});
+    yield put({ type: 'MODIFY_FAILED', error });
   }
 }
 
@@ -141,6 +138,6 @@ export default function* rootSaga() {
     takeEvery('DELETE_NAMESPACE', deleteNamespace),
     takeEvery('DELETE_KEY', deleteKey),
     takeEvery('CREATE_DATA', createData),
-    takeEvery('MODIFY_DATA', modifyData)
+    takeEvery('MODIFY_DATA', modifyData),
   ];
 }
