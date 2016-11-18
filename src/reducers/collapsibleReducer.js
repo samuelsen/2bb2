@@ -36,6 +36,9 @@ export default function collapsibleReducer(state=init, action) {
       console.log(action.data);
       /* TODO */
       return state;
+    case 'TEST_CASE':
+      console.log('test case');
+      return state;
     case 'FETCH_FAILED':
     case 'CREATE_FAILED':
     case 'DELETE_FAILED':
