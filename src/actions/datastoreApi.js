@@ -68,7 +68,6 @@ export function postData(text, data) {
   }).then(function(data, textStatus, jqXHR) {
     //console.log("HTTP Request Succeeded: " + jqXHR.status);
     //console.log(data);
-    window.location = "/viewData/" + text;
     return data;
   }).fail(function(jqXHR, textStatus, errorThrown) {
     console.log("HTTP Request Failed: " + jqXHR.status);
