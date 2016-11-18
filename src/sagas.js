@@ -1,10 +1,7 @@
 import { takeEvery, delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
-import { loadData } from './actions/getDHISdata';
-import { postData } from './actions/postDHISdata';
-import { deleteData } from './actions/deleteDHISdata';
-import { putData } from './actions/putDHISdata';
+import { loadData, postData, deleteData, putData } from './actions/datastoreApi';
 
 /* DATABASE OVERVIEW:
  *
