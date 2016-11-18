@@ -9,6 +9,7 @@ import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 import App from './App';
+import Create from './components/Create';
 import Test from './components/Test';
 import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas';
@@ -27,7 +28,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 store.dispatch({type: 'FETCH_NAMESPACES'});
 store.dispatch({type: 'FETCH_KEYS', namespace: "METADATASTORE"});
 store.dispatch({type: 'FETCH_KEYS', namespace: "social-media-video"});
-store.dispatch({type: 'FETCH_KEYS', namespace: "LOLZ"});
+//store.dispatch({type: 'FETCH_KEYS', namespace: "LOLZ"});
 //store.dispatch({type: 'FETCH_DATA', namespace: "METADATASTORE", key: "Version_1"});
 //store.dispatch({type: 'FETCH_DATA', namespace: "social-media-video", key: "hjcF14oVjo4"});
 //store.dispatch({type: 'CREATE_DATA', namespace: "LOLZ", key: "Version_X", body: "{ \"value\": \"TEST\"}"});
@@ -43,7 +44,7 @@ render(
             <Route path="/" component={App}></Route>
             <Route path="/test" component={Test}></Route>
             <Route path="/viewData/:namespace/:key" component={Test}></Route>
-            <Route path="/create/" component={Test}></Route>
+            <Route path="/create" component={Create}></Route>
         </Router>
     </Provider>,
     document.getElementById('app')
