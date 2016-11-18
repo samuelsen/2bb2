@@ -17,17 +17,3 @@ export function loadData(text) {
     console.log("HTTP Request Failed");
   })
 };
-
-
-
-//loadData("")
-//  .then(result => {
-//    console.log(result);
-//    result.map(namespace =>
-//      entries.push({
-//        namespace: namespace,
-//        ids: ["KEYSSSS"]
-//      })
-//    );
-//    console.log(entries);
-//  });

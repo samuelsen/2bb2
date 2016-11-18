@@ -16,10 +16,15 @@
     <nav>
         <div class="nav-wrapper container">
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="" class="right" onClick="location.reload();"><i class="medium material-icons">loop</i> Refresh</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="node_modules/materialize-css/index.html" target="_blank">Style docs</a></li>
+                <li><a href="/hjem">Hjem</a></li>
+                <li><a href="/create">Add</a></li>
+                <li><a href="node_modules/materialize-css/index.html">Style docs</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
+                <li><a href="/">Home</a></li>
+                <li><a href="/create">Add</a></li>
                 <li><a href="node_modules/materialize-css/index.html" target="_blank">Style docs</a></li>
             </ul>
         </div>
@@ -27,13 +32,12 @@
     <!-- end navigation -->
     <!-- the app renders here -->
     <div id='app' class="container"></div>
-    <div id="data"></div>
     <!-- end app render -->
     <!-- scripts -->
     <script src="/static/bundle.js"></script>
     <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/src/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
         $(".button-collapse").sideNav();
     </script>
