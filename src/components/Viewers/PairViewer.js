@@ -53,7 +53,7 @@ class PairViewer extends Component {
             <i className="material-icons">{this.getIcon()}</i>
             {nameElement}
         </div>
-        <div className="collapsible-body">
+        <div className="collapsible-body" style={{paddingLeft: 10}}>
             <JSONViewer path={path} target={value} />
         </div>
       </li>

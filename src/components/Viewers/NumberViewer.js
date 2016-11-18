@@ -16,13 +16,7 @@ class NumberViewer extends Component{
     render(){
         const { path, number, updateElement } = this.props;
 
-        return (
-            <li>
-                <div className="collapsible-header">
-                    <input type="number" pattern="[0-9]*" inputMode="numeric" value={number} onChange={event => updateElement(path, Number(event.target.value))}/>
-                </div>
-            </li>
-        );
+        return (<input type="number" pattern="[0-9]*" inputMode="numeric" value={number} onChange={event => updateElement(path, Number(event.target.value))}/>);
     }
 }
 

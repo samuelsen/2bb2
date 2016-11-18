@@ -15,12 +15,6 @@ export default class BooleanViewer extends Component{
         if(this.props.value)
             value = "True";
 
-        return (
-            <li>
-                <div className="collapsible-header">
-                    {value}
-                </div>
-            </li>
-        );
+        return (<div>{value}</div>);
     }
 }

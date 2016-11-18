@@ -17,9 +17,7 @@ class StringViewer extends Component{
         const { path, text, updateElement } = this.props;
 
         return (
-            <li>
                 <input value={text} onChange={event => updateElement(path, event.target.value)} type="text"/>
-            </li>
         );
     }
 }

@@ -19,43 +19,39 @@ export default class JSONViewer extends Component {
     target: "defaultString",
   }
 
-  render() {
-    if(Map.isMap(this.props.target) || List.isList(this.props.target)){
-      var values = this.props.target.keySeq().toArray().sort();
-      //this.props.target.map(value =>
-        //values.push({name: value, value: this.props.target.get(value)}));        
-      
+  getContent(){
+    const {path, target} = this.props;
+
+    if(Map.isMap(target) || List.isList(target)){
+      var values = target.keySeq().toArray().sort();
 
       return(
-        <ul className="collapsible" data-collapsible="accordion">
+        <ul className="collapsible" data-collapsible="expandable">
           {values.map(v =>
-            <PairViewer path={this.props.path.push(v)} key={v} name={v} value={this.props.target.get(v)} />
+            <PairViewer path={path.push(v)} key={v} name={v} value={target.get(v)} />
           )}
         </ul>
       );
     }
 
-    switch(typeof this.props.target){
-
-      case "string":return (
-        <ul className="collapsible" data-collapsible="accordion">
-          <StringViewer path={this.props.path} text={this.props.target}/>
-        </ul>
+    switch(typeof target){
+      case "string":return(
+        <StringViewer path={path} text={target}/>
       );
 
       case "number":return (
-        <ul className="collapsible" data-collapsible="accordion">
-          <NumberViewer path={this.props.path} number={this.props.target}/>
-        </ul>
+          <NumberViewer path={path} number={target}/>
       );
 
       case "boolean":return (
-        <ul className="collapsible" data-collapsible="accordion">
-          <BooleanViewer path={this.props.path} value={this.props.target}/>
-        </ul>
+          <BooleanViewer path={path} value={target}/>
       );
       default: return (<p> this should not happen :( </p>); 
     }
+  }
+
+  render() {
+    return this.getContent();
   }
 }
 
