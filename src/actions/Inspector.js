@@ -21,3 +21,11 @@ export function setTarget(newTarget){
         newTarget: newTarget
     };
 }
+
+export function addElement(path)
+{
+    return {
+        type: "ADD_ELEMENT",
+        path: path,
+    };
+}

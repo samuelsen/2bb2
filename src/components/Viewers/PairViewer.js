@@ -19,7 +19,7 @@ class PairViewer extends Component {
     path: object,
     name: string,
     value: "defaultString",
-    updateName: React.PropTypes.func.isRequired,
+    updateElement: React.PropTypes.func.isRequired,
   }
 
   state: {
@@ -40,15 +40,33 @@ class PairViewer extends Component {
     );
   }
 
+  modalComplete() {
+    console.log(this.props.path);
+  }
+
   render() {
     const { path, name, value, updateName } = this.props;
 
     var nameElement = name;
     if(typeof name == "string")
-      nameElement = <input value={name} onChange={event => updateName(path, event.target.value)} type="text"/>; 
+      nameElement = <input 
+        defaultValue={name} 
+        onBlur={event => updateName(path, event.target.value)}
+        type="text"
+      />; 
 
     return (
       <li>
+
+        <div id="addModal" className="modal">
+          <div className="modal-content">
+              <p>test</p>
+          </div>
+          <div className="modal-footer">
+              <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+        </div>  
+
         <div className="collapsible-header" onClick={this.toggleOpen.bind(this)}>
             <i className="material-icons">{this.getIcon()}</i>
             {nameElement}
@@ -61,4 +79,4 @@ class PairViewer extends Component {
   }
 }
 
-export default connect(null, InspectorActions)(PairViewer);
+export default connect(null, InspectorActions)(PairViewer);1

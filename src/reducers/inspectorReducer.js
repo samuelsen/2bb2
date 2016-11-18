@@ -19,7 +19,6 @@ export default function inspectorReducer(state=init, action) {
     case 'UPDATE_NAME':
       var name = action.path.last();
       var path = action.path.splice(-1,1);
-      console.log(name);
       return state.update('target', (target) => target.updateIn(path, (val) => {
         var tmp = val.get(name);
         val = val.delete(name);
@@ -27,6 +26,15 @@ export default function inspectorReducer(state=init, action) {
       }));
     case 'SET_TARGET':
       return state.update('target', (target) => action.newTarget);
+    case 'ADD_ELEMENT':
+      console.log(action.path.toArray());
+      return state.update("target", val => val.updateIn(action.path, (target) => {
+        console.log(target);
+        if(Map.isMap(target))
+          return target.set("", "");
+        else
+          return target.push("");
+      }));
     default:
       return state;
   }

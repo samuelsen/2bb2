@@ -7,6 +7,7 @@ import StringViewer from './StringViewer';
 import NumberViewer from './NumberViewer';
 import BooleanViewer from './BooleanViewer';
 import PairViewer from './PairViewer';
+import ObjectViewer from './ObjectViewer';
 
 export default class JSONViewer extends Component {
 
@@ -23,18 +24,13 @@ export default class JSONViewer extends Component {
     const {path, target} = this.props;
 
     if(Map.isMap(target) || List.isList(target)){
-      var values = target.keySeq().toArray().sort();
-
-      return(
-        <ul className="collapsible" data-collapsible="expandable">
-          {values.map(v =>
-            <PairViewer path={path.push(v)} key={v} name={v} value={target.get(v)} />
-          )}
-        </ul>
+      return (
+        <ObjectViewer path={path} target={target}/>
       );
     }
 
     switch(typeof target){
+
       case "string":return(
         <StringViewer path={path} text={target}/>
       );
