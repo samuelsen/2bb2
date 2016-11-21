@@ -19,7 +19,6 @@ export default class BooleanViewer extends Component{
 
         return (<div>
                     {value}   
-                    <TypePicker path={path} type="boolean" />
                 </div>);
     }
 }

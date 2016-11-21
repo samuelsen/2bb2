@@ -30,7 +30,6 @@ class ArrayViewer extends Component{
                     )}
                     <a className="btn-floating btn-medium waves-effect waves-light red right" href="#addModal" onClick={event => addElement(path)} style={{margin: 5}} ><i className="material-icons">add</i></a>
                 </ul>   
-                <TypePicker path={path} type="array" />
             </div>
         );
     }

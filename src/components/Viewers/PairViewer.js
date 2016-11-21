@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import JSONViewer from './JSONViewer'
 
 import * as InspectorActions from './../../actions/Inspector';
+import TypePicker, { getType } from './TypePicker';
 
 class PairViewer extends Component {
 
@@ -44,36 +45,44 @@ class PairViewer extends Component {
     console.log(this.props.path);
   }
 
+  componentDidMount(){
+  }
+
   render() {
     const { path, name, value, updateName } = this.props;
 
     var nameElement = name;
     if(typeof name == "string")
-      nameElement = <input 
-        defaultValue={name} 
-        onBlur={event => updateName(path, event.target.value)}
-        onClick={event => event.stopPropogation()}
-        type="text"
-      />; 
+      nameElement = 
+      <div>
+        <label>Name:</label>
+        <div style={{display: "inline-block", paddingLeft: 5}}>
+          <input 
+            className="stop-propagation"
+            defaultValue={name} 
+            onBlur={event => updateName(path, event.target.value)}
+            onClick={event => {
+              event.target.stopPropagation = true;
+            }}
+            type="text"
+          />
+        </div>
+      </div>; 
 
     return (
       <li>
-
-        <div id="addModal" className="modal">
-          <div className="modal-content">
-              <p>test</p>
-          </div>
-          <div className="modal-footer">
-              <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-          </div>
-        </div>  
-
         <div className="collapsible-header" onClick={this.toggleOpen.bind(this)}>
             <i className="material-icons">{this.getIcon()}</i>
+            <div style={{display: "inline-block"}}>
+              <label>Type:</label>
+              <div style={{display: "inline-block", paddingLeft: 5}}>
+                <TypePicker path={path} type={getType(value)} />
+              </div>
+            </div>
             {nameElement}
         </div>
         <div className="collapsible-body" style={{paddingLeft: 10}}>
-            <JSONViewer path={path} target={value} />
+            <label>Value:</label><JSONViewer path={path} target={value} />
         </div>
       </li>
     );

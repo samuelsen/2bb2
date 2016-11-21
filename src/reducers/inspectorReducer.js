@@ -2,7 +2,14 @@
 import { List, Map } from 'immutable';
 import { loadData } from '../actions/getDHISdata';
 
-const init = Map({ target: Map({'dummyObject': Map({'dummy1': 'd1', 'dummy2': 'asd'}), dummyList: List([1, 2, "dummy3"]), "": "test"}) });
+const init = Map({ 
+    target: Map({
+        'dummyObject': Map({  
+          'dummy1': 'd1', 
+          'dummy2': 'asd'}), 
+        dummyList: List([1, 2, "dummy3"]), 
+        "": "test"}),
+    initializeCollapsible: false});
 
 function updateElement(target, elementPath, newValue){
   if(elementPath.size == 0){
@@ -29,14 +36,17 @@ export default function inspectorReducer(state=init, action) {
     case 'SET_TARGET':
       return state.update('target', (target) => action.newTarget);
     case 'ADD_ELEMENT':
-      console.log(action.path.toArray());
-      return state.update("target", val => val.updateIn(action.path, (target) => {
-        console.log(target);
+      var newState = state.update("target", val => val.updateIn(action.path, (target) => { 
         if(Map.isMap(target))
           return target.set("", "");
         else
           return target.push("");
       }));
+      if(typeof target == "object")
+        return newState.update("initializeCollapsible", (val) => true);
+      return newState;
+    case 'COLLAPSIBLE_INIT':
+      return state.update("initializeCollapsible", (val) => false);
     default:
       return state;
   }

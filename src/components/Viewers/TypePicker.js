@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as InspectorActions from './../../actions/Inspector';
 import { connect } from 'react-redux';
+import { Map, List } from 'immutable';
 
 var $ = require('jquery');
 
@@ -31,3 +32,16 @@ class TypePicker extends Component{
 }
 
 export default connect(null, InspectorActions)(TypePicker);
+
+export function getType(target){
+    if(target == null)
+        return "null";
+
+    if(Map.isMap(target))
+        return "object";
+
+    if(List.isList(target))
+        return "array";
+
+    return typeof target;
+}

@@ -38,7 +38,11 @@
         $(".button-collapse").sideNav();
         $(document).ready(function() {
             $('select').material_select();
+            $('.stop-propagation').on('click', function(e){
+                e.stopPropagation();
+            });
         });
+      
     </script>
     <!-- end scripts -->
 </body>

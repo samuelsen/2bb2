@@ -49,3 +49,7 @@ export function setType(path, type){
         newValue: val,
     };
 }
+
+export function collapsibleInit(){
+    return { type: "COLLAPSIBLE_INIT" };
+}

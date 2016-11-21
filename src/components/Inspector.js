@@ -28,7 +28,19 @@ class Inspector extends Component {
       <textarea id="jsonText" defaultValue={JSON.stringify(target.toJS())}/>
 
     
+    const modal = <div id='addModal' className="modal">
+                    <div className="modal-content">
+                        <p>test</p>
+                    </div>
+                    <div className="modal-footer">
+                        <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                  </div>; 
+
     return (<div>
+
+                
+
               {textArea}                
               <button className="btn waves-effect waves-light" onClick={event => setTarget(Immutable.fromJS(JSON.parse($("textarea#jsonText").val())))}>Import</button>
               <button className="btn waves-effect waves-light" onClick={event => {

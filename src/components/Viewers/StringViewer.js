@@ -21,8 +21,7 @@ class StringViewer extends Component{
 
         return (
             <div>
-                <input value={text} onChange={event => updateElement(path, event.target.value)} type="text"/>   
-                <TypePicker path={path} type="string" />
+                <input value={text} onChange={event => updateElement(path, event.target.value)} type="text"/>
             </div>
         );
     }

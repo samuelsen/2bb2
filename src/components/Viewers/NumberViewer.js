@@ -21,7 +21,6 @@ class NumberViewer extends Component{
         return (
             <div>
                 <input type="number" pattern="[0-9]*" inputMode="numeric" value={number} onChange={event => updateElement(path, Number(event.target.value))}/>
-                <TypePicker path={path} type="number" />
             </div>
         );
     }
