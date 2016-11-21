@@ -25,10 +25,10 @@ sagaMiddleware.run(rootSaga);
 const history = syncHistoryWithStore(browserHistory, store);
 
 // TEST DATA (UNCOMMENT yield delay(1000); IN SAGAS.JS)
-store.dispatch({ type: 'FETCH_NAMESPACES' });
-store.dispatch({ type: 'FETCH_KEYS', namespace: 'METADATASTORE' });
-store.dispatch({ type: 'FETCH_KEYS', namespace: 'social-media-video' });
-store.dispatch({ type: 'FETCH_KEYS', namespace: 'newspace' });
+// store.dispatch({ type: 'FETCH_NAMESPACES' });
+// store.dispatch({ type: 'FETCH_KEYS', namespace: 'METADATASTORE' });
+// store.dispatch({ type: 'FETCH_KEYS', namespace: 'social-media-video' });
+// store.dispatch({ type: 'FETCH_KEYS', namespace: 'newspace' });
 // store.dispatch({type: 'FETCH_KEYS', namespace: "LOLZ"});
 // store.dispatch({type: 'FETCH_DATA', namespace: "METADATASTORE", key: "Version_1"});
 // store.dispatch({type: 'FETCH_DATA', namespace: "social-media-video", key: "hjcF14oVjo4"});
