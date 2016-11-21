@@ -10,6 +10,18 @@ class CollapsibleList extends Component {
       namespace: string,
       ids: string[],
     }],
+    fetchNamespaces: () => {},
+    fetchKeys: () => {},
+  }
+
+  componentDidMount() {
+    this.props.fetchNamespaces();
+  }
+
+  componentDidUpdate() {
+    this.props.entries.map(
+      entry => this.props.fetchKeys(entry.namespace)
+    );
   }
 
   render() {
@@ -30,10 +42,22 @@ class CollapsibleList extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchNamespaces: () => dispatch({
+      type: 'FETCH_NAMESPACES',
+    }),
+    fetchKeys: (namespace) => dispatch({
+      type: 'FETCH_KEYS',
+      namespace,
+    }),
+  };
+}
+
 function mapStateToProps(state) {
   return {
     entries: state.collapsibleList.get('entries'),
   };
 }
 
-export default connect(mapStateToProps)(CollapsibleList);
+export default connect(mapStateToProps, mapDispatchToProps)(CollapsibleList);
