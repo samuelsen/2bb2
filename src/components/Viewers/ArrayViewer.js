@@ -14,7 +14,7 @@ class ArrayViewer extends Component{
     props: {
         path: object,
         target: object,
-        updateElement: React.PropTypes.func.isRequired, 
+        updateElement: React.PropTypes.func.isRequired,
         addElement: React.PropTypes.func.isRequired,
     }
 
@@ -30,7 +30,7 @@ class ArrayViewer extends Component{
                         <PairViewer path={path.push(v)} key={v} name={v} value={target.get(v)} />
                     )}
                     <AddButton path={path}/>
-                </ul>   
+                </ul>
             </div>
         );
     }

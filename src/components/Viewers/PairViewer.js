@@ -1,32 +1,36 @@
-
-import React, { Component, TextInput } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import JSONViewer from './JSONViewer'
+import JSONViewer from './JSONViewer';
 
 import * as InspectorActions from './../../actions/Inspector';
 import TypePicker, { getType } from './TypePicker';
 
-var $ = require('jquery');
+const $ = require('jquery');
 
 class PairViewer extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       open: false,
     };
-  }
-
-  props: {
-    path: object,
-    name: string,
-    value: "defaultString",
-    updateElement: React.PropTypes.func.isRequired,
+    this.toggleOpen = this.toggleOpen.bind(this);
   }
 
   state: {
     open: boolean,
+  }
+
+  componentDidMount() {
+    $('.stop-propagation').on('click', e => e.stopPropagation());
+  }
+
+  getIcon() {
+    return (
+      this.state.open
+      ? 'trending_down'
+      : 'trending_flat'
+    );
   }
 
   toggleOpen() {
@@ -35,57 +39,51 @@ class PairViewer extends Component {
     });
   }
 
-  getIcon() {
-    return (
-      this.state.open
-      ? "trending_down"
-      : "trending_flat"
-    );
-  }
-
-  componentDidMount(){
-    $('.stop-propagation').on('click', function(e){
-        e.stopPropagation();
-    });
+  props: {
+    path: React.PropTypes.object,
+    name: React.PropTypes.string,
+    value: 'defaultString',
+    updateName: React.PropTypes.func.isRequired,
   }
 
   render() {
     const { path, name, value, updateName } = this.props;
-
-    var nameElement = name;
-    if(typeof name == "string")
-      nameElement = 
-      <div>
-        <label>Name:</label>
-        <div style={{display: "inline-block", paddingLeft: 5}}>
-          <input 
-            className="stop-propagation"
-            defaultValue={name} 
-            onBlur={event => updateName(path, event.target.value)}
-            type="text"
-          />
+    let nameElement = name;
+    if (typeof name === 'string') {
+      nameElement = (
+        <div>
+          <label>Name:</label>
+          <div style={{ display: 'inline-block', paddingLeft: 5 }}>
+            <input
+              className="stop-propagation"
+              defaultValue={name}
+              onBlur={event => updateName(path, event.target.value)}
+              type="text"
+            />
+          </div>
         </div>
-      </div>; 
+      );
+    }
 
     return (
       <li>
-        <div className="collapsible-header" onClick={this.toggleOpen.bind(this)}>
-            <i className="material-icons">{this.getIcon()}</i>
-            <div style={{display: "inline-block"}}>
-              <label>Type:</label>
-              <div className="stop-propagation" style={{display: "inline-block", paddingLeft: 5}}>
-                <TypePicker path={path} type={getType(value)} />
-              </div>
+        <div className="collapsible-header" onClick={this.toggleOpen}>
+          <i className="material-icons">{this.getIcon()}</i>
+          <div style={{ display: 'inline-block' }}>
+            <label>Type:</label>
+            <div className="stop-propagation" style={{ display: 'inline-block', paddingLeft: 5 }}>
+              <TypePicker path={path} type={getType(value)} />
             </div>
-            {nameElement}
+          </div>
+          {nameElement}
         </div>
-        <div className="collapsible-body" style={{paddingLeft: 10}}>
-            <label>Value:</label>
-              <JSONViewer path={path} target={value} />
+        <div className="collapsible-body" style={{ paddingLeft: 10 }}>
+          <label>Value:</label>
+          <JSONViewer path={path} target={value} />
         </div>
       </li>
     );
   }
 }
 
-export default connect(null, InspectorActions)(PairViewer);1
+export default connect(null, InspectorActions)(PairViewer);

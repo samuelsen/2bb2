@@ -13,13 +13,13 @@ class AddButton extends Component{
         path: object,
         addElement: React.PropTypes.func.isRequired,
     }
-
+    
     render(){
         const { path, addElement } = this.props;
 
-        return (<a className="btn-floating btn-medium waves-effect waves-light red right" 
-                   onClick={e => addElement(path)} 
-                   style={{margin: 5}} 
+        return (<a className="btn-floating btn-medium waves-effect waves-light red right"
+                   onClick={e => addElement(path)}
+                   style={{margin: 5}}
                 >
                     <i className="material-icons">add</i>
                 </a>);

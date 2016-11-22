@@ -14,7 +14,7 @@ class ObjectViewer extends Component{
     props: {
         path: object,
         target: object,
-        updateElement: React.PropTypes.func.isRequired, 
+        updateElement: React.PropTypes.func.isRequired,
         addElement: React.PropTypes.func.isRequired,
     }
 
@@ -40,7 +40,7 @@ class ObjectViewer extends Component{
                 <ul className="collapsible" data-collapsible="expandable" style={{marginBottom: 50}}>
                     {content}
                     <AddButton path={path}/>
-                </ul>   
+                </ul>
             </div>
         );
     }
