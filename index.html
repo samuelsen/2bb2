@@ -48,10 +48,9 @@
                 e.stopPropagation();
             });
         });
-        
+
         function collapsibleInit(){
             if(document.collapsibleNeedsInit){
-                console.log("derp");
                 $('.collapsible').collapsible();
                 document.collapsibleNeedsInit = false;
             }
