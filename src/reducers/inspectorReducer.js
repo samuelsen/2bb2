@@ -25,12 +25,13 @@ export default function inspectorReducer(state = init, action) {
         target.updateIn(action.path, () => action.newValue)
       );
     case 'UPDATE_NAME':
-      return state.update('target', target =>
-        target.updateIn(action.path.splice(-1, 1), (val) => {
-          const tmp = val.get(action.path.last());
-          val.delete(action.path.last());
-          return val.set(action.newValue, tmp);
-        }));
+      const name = action.path.last();
+      const path = action.path.splice(-1,1);
+      return state.update('target', (target) => target.updateIn(path, (val) => {
+        const tmp = val.get(name);
+        val = val.delete(name);
+        return val.set(action.newValue, tmp);
+      }));
     case 'SET_TARGET':
       return state.set('target', action.newTarget);
     case 'ADD_ELEMENT':
