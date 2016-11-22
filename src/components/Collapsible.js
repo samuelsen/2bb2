@@ -18,7 +18,7 @@ export default class Collapsible extends Component {
 
   getIcon() {
     return (
-      this.state.open ? 'trending_down' : 'trending_flat'
+      this.state.open ? 'visibility_off' : 'visibility'
     );
   }
 
@@ -42,7 +42,7 @@ export default class Collapsible extends Component {
           {this.props.namespace}
         </div>
         <div className="collapsible-body">
-          {this.props.ids.map(id => <p key={id}>{id}</p>)}
+          {this.props.ids.map(id => <p key={id}>{id} <a href={"view/" + this.props.namespace + "/" + id} className="right btn red"><i className="small material-icons">open_in_new</i></a></p>)}
         </div>
       </li>
     );
