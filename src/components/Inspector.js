@@ -16,12 +16,6 @@ class Inspector extends Component {
     super(props);
 
     const { namespace, key } = this.props.params;
-
-    //var data = loadData(namespace + "/" + key);
-
-    //console.log(data);
-
-    //this.props.setTarget(JSON.parse(data));
   }
 
   componentDidMount() {

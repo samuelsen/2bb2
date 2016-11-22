@@ -39,6 +39,8 @@
   <script type="text/javascript" src="/src/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
+        document.collapsibleNeedsInit = true;
+
         $(".button-collapse").sideNav();
         $(document).ready(function() {
             $('select').material_select();
@@ -46,6 +48,15 @@
                 e.stopPropagation();
             });
         });
+        
+        function collapsibleInit(){
+            if(document.collapsibleNeedsInit){
+                console.log("derp");
+                $('.collapsible').collapsible();
+                document.collapsibleNeedsInit = false;
+            }
+        }
+        setInterval(collapsibleInit, 100);
     </script>
     <!-- end scripts -->
 </body>

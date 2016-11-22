@@ -15,6 +15,7 @@ import { loadData, postData, deleteData, putData } from './actions/datastoreApi'
  * Fetches all namespaces in the database */
 function* fetchNamespaces() {
   try {
+    yield delay(1000);
     const data = yield call(loadData, '');
     yield put({
       type: 'NAMESPACES_FETCHED',

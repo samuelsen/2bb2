@@ -62,12 +62,8 @@ export default class JSONViewer extends Component {
           </div>
       );
 
-    return( <div onClick={this.click}>
+    return( <div>
               {content}
             </div>);
   }
-}
-
-function mapStateToProps(state) {
-  return { target: state.inspector.get('target') };
 }
