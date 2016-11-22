@@ -9,15 +9,17 @@ export default class Collapsible extends Component {
     this.state = {
       open: false,
     };
-  }
-
-  props: {
-    namespace: string,
-    ids: string[],
+    this.toggleOpen = this.toggleOpen.bind(this);
   }
 
   state: {
     open: boolean,
+  }
+
+  getIcon() {
+    return (
+      this.state.open ? 'trending_down' : 'trending_flat'
+    );
   }
 
   toggleOpen() {
@@ -26,18 +28,16 @@ export default class Collapsible extends Component {
     });
   }
 
-  getIcon() {
-    return (
-      this.state.open
-      ? "trending_down"
-      : "trending_flat"
-    );
+  props: {
+    namespace: string,
+    ids: string[],
   }
+
 
   render() {
     return (
       <li>
-        <div className="collapsible-header" onClick={this.toggleOpen.bind(this)}>
+        <div className="collapsible-header" onClick={this.toggleOpen}>
           <i className="material-icons">{this.getIcon()}</i>
           {this.props.namespace}
         </div>
