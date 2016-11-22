@@ -13,7 +13,6 @@ import Create from './components/Create';
 import Inspector from './components/Inspector';
 import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas';
-import { Test } from './components/Test';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
