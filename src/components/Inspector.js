@@ -13,7 +13,6 @@ class Inspector extends Component {
 
   constructor(props) {
     super(props);
-    const { namespace, key } = this.props.params;
   }
 
   componentDidMount() {
@@ -28,6 +27,7 @@ class Inspector extends Component {
     target: "defaultString",
     setTarget: React.PropTypes.func.isRequired,
     fetchData: () => {},
+    putData: () => {},
   }
 
   render() {
@@ -50,6 +50,22 @@ class Inspector extends Component {
       </div>
     );
 
+
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
+    /* TODO: CLEAN UP THIS MESS!!! */
     return (
       <div>
         {jsonViewer}
@@ -63,8 +79,10 @@ class Inspector extends Component {
           className="btn waves-effect waves-light red"
           onClick={ event => {
             if(typeof target == "object") {
+              this.props.putData(this.props.params.namespace, this.props.params.key, JSON.stringify(target.toJS()));
               return $("textarea#jsonText").val(JSON.stringify(target.toJS()));
             } else {
+              this.props.putData(this.props.params.namespace, this.props.params.key, JSON.stringify(target));
               return $("textarea#jsonText").val(JSON.stringify(target));
             }}}>
           Export
@@ -74,19 +92,25 @@ class Inspector extends Component {
   }
 }
 
-  function mapDispatchToProps(dispatch) {
-    return {
-      fetchData: (namespace, key) => dispatch({
-        type: "FETCH_DATA",
-        namespace,
-        key,
-      }),
-      InspectorActions,
-    };
-  }
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchData: (namespace, key) => dispatch({
+      type: "FETCH_DATA",
+      namespace,
+      key,
+    }),
+    putData: (namespace, key, data) => dispatch({
+      type: "MODIFY_DATA",
+      body: data,
+      namespace,
+      key,
+    }),
+    InspectorActions,
+  };
+}
 
-  function mapStateToProps(state) {
-    return { target: state.inspector.get('target') };
-  }
+function mapStateToProps(state) {
+  return { target: state.inspector.get('target') };
+}
 
-  export default connect(mapStateToProps, mapDispatchToProps)(Inspector);
+export default connect(mapStateToProps, mapDispatchToProps)(Inspector);
