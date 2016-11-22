@@ -34,6 +34,7 @@ export default function inspectorReducer(state = init, action) {
     case 'SET_TARGET':
       return state.set('target', action.newTarget);
     case 'ADD_ELEMENT':
+      document.collapsibleNeedsInit = true;
       return state.update('target', val => val.updateIn(action.path, (target) => {
         if (Map.isMap(target)) {
           return target.set('', '');
@@ -43,6 +44,7 @@ export default function inspectorReducer(state = init, action) {
     case 'COLLAPSIBLE_INIT':
       return state.set('initializeCollapsible', false);
     case 'DATA_FETCHED':
+      document.collapsibleNeedsInit = true;
       return state.set('target', Immutable.fromJS(action.data));
     default:
       return state;

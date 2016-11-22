@@ -13,17 +13,7 @@ class AddButton extends Component{
         path: object,
         addElement: React.PropTypes.func.isRequired,
     }
-
-    handleBlur(event){
-        console.log($('.collapsible').collapsible);
-        $('.collapsible').collapsible();
-    }
-
-    click(e){
-      $('.collapsible').collapsible();
-      e => addElement(path);
-    }
-
+    
     render(){
         const { path, addElement } = this.props;
 
