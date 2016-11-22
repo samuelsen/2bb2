@@ -28,7 +28,7 @@ class AddButton extends Component{
         const { path, addElement } = this.props;
 
         return (<a className="btn-floating btn-medium waves-effect waves-light red right" 
-                   onClick={this.click} 
+                   onClick={e => addElement(path)} 
                    style={{margin: 5}} 
                 >
                     <i className="material-icons">add</i>
