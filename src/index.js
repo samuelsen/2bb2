@@ -41,7 +41,8 @@ render(
     { /* Tell the Router to use our enhanced history */ }
     <Router history={history}>
       <Route path="/" component={App} />
-      <Route path="/viewData/:namespace/:key" component={Inspector} />
+      <Route path="/test" component={Test} />
+      <Route path="/view/:namespace/:key" component={Inspector} />
       <Route path="/create" component={Create} />
     </Router>
   </Provider>,

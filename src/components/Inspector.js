@@ -41,7 +41,7 @@ class Inspector extends Component {
   render() {
     const { target, setTarget } = this.props;
 
-    var textArea = <textarea id="jsonText" defaultValue={JSON.stringify(target)}/>;
+    var textArea = <textarea id="jsonText" className="text-input" defaultValue={JSON.stringify(target)}/>;
 
     var jsonViewer = <label>Loading...</label>;
     if(target != null){
@@ -61,16 +61,16 @@ class Inspector extends Component {
                   </div>; 
 
     return (<div>
+              {jsonViewer}
               {textArea}                
-              <button className="btn waves-effect waves-light" onClick={event => setTarget(Immutable.fromJS(JSON.parse($("textarea#jsonText").val())))}>Import</button>
-              <button className="btn waves-effect waves-light" onClick={event => {
+              <button className="btn waves-effect waves-light red" onClick={event => setTarget(Immutable.fromJS(JSON.parse($("textarea#jsonText").val())))}>Import</button>
+              <button className="btn waves-effect waves-light red" onClick={event => {
                 console.log(target);
                 if(typeof target == "object")
                   return $("textarea#jsonText").val(JSON.stringify(target.toJS()));
                 else
                   return $("textarea#jsonText").val(JSON.stringify(target));
               }}>Export</button>
-              {jsonViewer}
             </div>); 
   }
 }

@@ -18,13 +18,17 @@ class AddButton extends Component{
         console.log($('.collapsible').collapsible);
         $('.collapsible').collapsible();
     }
+      
+    click(e){
+      $('.collapsible').collapsible();
+      e => addElement(path);
+    }
 
     render(){
         const { path, addElement } = this.props;
 
         return (<a className="btn-floating btn-medium waves-effect waves-light red right" 
-                   onBlur={this.handleBlur} 
-                   onClick={event => addElement(path)} 
+                   onClick={this.click} 
                    style={{margin: 5}} 
                 >
                     <i className="material-icons">add</i>
