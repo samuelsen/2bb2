@@ -28,7 +28,6 @@ function* fetchNamespaces() {
 /* FETCH_KEYS:
  * Fetches all keys in a namespace */
 function* fetchKeys(action) {
-  console.log("FETCHING: " + action.namespace);
   try {
     yield delay(1000);
     const url = action.namespace;
