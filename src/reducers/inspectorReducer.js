@@ -1,6 +1,6 @@
 
 import { List, Map } from 'immutable';
-import { loadData } from '../actions/getDHISdata';
+import { loadData } from '../actions/datastoreApi';
 
 const init = Map({ 
     target: Map({

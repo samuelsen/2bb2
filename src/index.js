@@ -28,13 +28,13 @@ const history = syncHistoryWithStore(browserHistory, store);
 store.dispatch({ type: 'FETCH_NAMESPACES' });
 store.dispatch({ type: 'FETCH_KEYS', namespace: 'METADATASTORE' });
 store.dispatch({ type: 'FETCH_KEYS', namespace: 'social-media-video' });
-store.dispatch({ type: 'FETCH_KEYS', namespace: 'newspace' });
-// store.dispatch({type: 'FETCH_KEYS', namespace: "LOLZ"});
 // store.dispatch({type: 'FETCH_DATA', namespace: "METADATASTORE", key: "Version_1"});
 // store.dispatch({type: 'FETCH_DATA', namespace: "social-media-video", key: "hjcF14oVjo4"});
 // store.dispatch({type: 'FETCH_DATA', namespace: "METADATASTORE", key: "Version_Y"});
-// store.dispatch({type: 'DELETE_KEY', namespace: "LOLZ", key:"Version_X"});
-// store.dispatch({type: 'DELETE_NAMESPACE', namespace: "LOLZ"});
+//store.dispatch({type: 'DELETE_KEY', namespace: "social-media-video", key:"Kjetil"});
+//store.dispatch({type: 'DELETE_KEY', namespace: "social-media-video", key:"john"});
+//store.dispatch({type: 'DELETE_KEY', namespace: "social-media-video", key:"henning"});
+//store.dispatch({type: 'DELETE_NAMESPACE', namespace: "ksjdlkajsdlkajslkdjlaksjd"});
 
 render(
   <Provider store={store}>
