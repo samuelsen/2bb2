@@ -20,6 +20,10 @@ class Inspector extends Component {
     setTarget: React.PropTypes.func.isRequired,
   }
 
+  tick(){
+    console.log("test");
+  }
+
   render() {
     const { target, setTarget } = this.props;
 

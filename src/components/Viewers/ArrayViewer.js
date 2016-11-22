@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import PairViewer from './PairViewer';
 import TypePicker from './TypePicker';
+import AddButton from './AddButton';
 
 class ArrayViewer extends Component{
     constructor(props){
@@ -28,7 +29,7 @@ class ArrayViewer extends Component{
                     {values.map(v =>
                         <PairViewer path={path.push(v)} key={v} name={v} value={target.get(v)} />
                     )}
-                    <a className="btn-floating btn-medium waves-effect waves-light red right" href="#addModal" onClick={event => addElement(path)} style={{margin: 5}} ><i className="material-icons">add</i></a>
+                    <AddButton path={path}/>
                 </ul>   
             </div>
         );

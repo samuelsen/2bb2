@@ -6,7 +6,9 @@ const init = Map({
     target: Map({
         'dummyObject': Map({  
           'dummy1': 'd1', 
-          'dummy2': 'asd'}), 
+          'dummy2': Map({
+            "a": "faggot"
+          })}), 
         dummyList: List([1, 2, "dummy3"]), 
         "": "test"}),
     initializeCollapsible: false});

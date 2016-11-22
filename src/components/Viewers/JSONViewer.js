@@ -9,7 +9,7 @@ import BooleanViewer from './BooleanViewer';
 import PairViewer from './PairViewer';
 import ObjectViewer from './ObjectViewer';
 import ArrayViewer from './ArrayViewer';
-import { getType } from './TypePicker';
+import TypePicker, { getType } from './TypePicker';
 
 export default class JSONViewer extends Component {
 
@@ -47,7 +47,16 @@ export default class JSONViewer extends Component {
   }
 
   render() {
-    var content = this.getContent(); 
+    const {path, target} = this.props;
+    var content = this.getContent();
+
+    if((typeof target != "object") && (path.size == 0))
+      return(
+          <div>
+            <label>Type</label><TypePicker path={path} type={getType(target)}/>
+            <label>Value</label>{content}
+          </div>
+      );
 
     return( <div>
               {content}

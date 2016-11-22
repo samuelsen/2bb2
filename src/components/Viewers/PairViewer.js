@@ -7,6 +7,8 @@ import JSONViewer from './JSONViewer'
 import * as InspectorActions from './../../actions/Inspector';
 import TypePicker, { getType } from './TypePicker';
 
+var $ = require('jquery');
+
 class PairViewer extends Component {
 
   constructor(props) {
@@ -41,11 +43,11 @@ class PairViewer extends Component {
     );
   }
 
-  modalComplete() {
-    console.log(this.props.path);
-  }
-
   componentDidMount(){
+    console.log($('.collapsible').collapsible);
+    $('.stop-propagation').on('click', function(e){
+        e.stopPropagation();
+    });
   }
 
   render() {
@@ -61,9 +63,6 @@ class PairViewer extends Component {
             className="stop-propagation"
             defaultValue={name} 
             onBlur={event => updateName(path, event.target.value)}
-            onClick={event => {
-              event.target.stopPropagation = true;
-            }}
             type="text"
           />
         </div>
@@ -75,7 +74,7 @@ class PairViewer extends Component {
             <i className="material-icons">{this.getIcon()}</i>
             <div style={{display: "inline-block"}}>
               <label>Type:</label>
-              <div style={{display: "inline-block", paddingLeft: 5}}>
+              <div className="stop-propagation" style={{display: "inline-block", paddingLeft: 5}}>
                 <TypePicker path={path} type={getType(value)} />
               </div>
             </div>
