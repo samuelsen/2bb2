@@ -5,6 +5,20 @@ import { connect } from 'react-redux';
 import Collapsible from './Collapsible';
 
 class CollapsibleList extends Component {
+  componentDidMount() {
+    this.props.fetchNamespaces();
+  }
+
+  componentDidUpdate() {
+    this.props.entries.forEach(
+      (entry) => {
+        if (entry.ids.length === 0) {
+          this.props.fetchKeys(entry.namespace);
+        }
+      }
+    );
+  }
+
   props: {
     entries: [{
       namespace: string,
@@ -14,15 +28,6 @@ class CollapsibleList extends Component {
     fetchKeys: () => {},
   }
 
-  componentDidMount() {
-    this.props.fetchNamespaces();
-  }
-
-  componentDidUpdate() {
-    this.props.entries.map(
-      entry => this.props.fetchKeys(entry.namespace)
-    );
-  }
 
   render() {
     return (
@@ -47,7 +52,7 @@ function mapDispatchToProps(dispatch) {
     fetchNamespaces: () => dispatch({
       type: 'FETCH_NAMESPACES',
     }),
-    fetchKeys: (namespace) => dispatch({
+    fetchKeys: namespace => dispatch({
       type: 'FETCH_KEYS',
       namespace,
     }),
