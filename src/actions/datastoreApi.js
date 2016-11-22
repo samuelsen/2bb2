@@ -59,7 +59,7 @@ export function postData(text, body) {
       'Content-Type': 'application/json',
     },
   }).then((data) => {
-    window.location = `/viewData/${text}`;
+    window.location = `/view/${text}`;
     return data;
   }).fail((jqXHR, textStatus, errorThrown) => {
     console.log(`HTTP Request Failed: ${jqXHR.status}`);

@@ -2,6 +2,8 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 
+var boundIp = '0.0.0.0';
+
 const manifest = require('./src/manifest.js');
 
 new WebpackDevServer(webpack(config), {
