@@ -15,7 +15,8 @@
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react/forbid-prop-types": 0
   },
   "plugins": [
     "react"

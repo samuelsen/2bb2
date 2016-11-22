@@ -16,7 +16,7 @@ export default class JSONViewer extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   props: {
     path: object,
     target: "defaultString",
@@ -42,12 +42,12 @@ export default class JSONViewer extends Component {
       case "boolean":
         return (<BooleanViewer path={path} value={target}/>);
 
-      default: return (<p> {target.toString()}</p>); 
+      default: return (<p> {target.toString()}</p>);
     }
   }
-  
+
   click(){
-    $('.collapsible').collapsible();  
+    $('.collapsible').collapsible();
   }
 
   render() {

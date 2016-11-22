@@ -18,7 +18,7 @@ export default class BooleanViewer extends Component{
             value = "True";
 
         return (<div>
-                    {value}   
+                    {value}
                 </div>);
     }
 }

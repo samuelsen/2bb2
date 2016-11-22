@@ -18,7 +18,7 @@ class AddButton extends Component{
         console.log($('.collapsible').collapsible);
         $('.collapsible').collapsible();
     }
-      
+
     click(e){
       $('.collapsible').collapsible();
       e => addElement(path);
@@ -27,9 +27,9 @@ class AddButton extends Component{
     render(){
         const { path, addElement } = this.props;
 
-        return (<a className="btn-floating btn-medium waves-effect waves-light red right" 
-                   onClick={e => addElement(path)} 
-                   style={{margin: 5}} 
+        return (<a className="btn-floating btn-medium waves-effect waves-light red right"
+                   onClick={e => addElement(path)}
+                   style={{margin: 5}}
                 >
                     <i className="material-icons">add</i>
                 </a>);
