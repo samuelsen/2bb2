@@ -9,6 +9,15 @@
     <link type="text/css" rel="stylesheet" href="/src/styles/align.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="/src/styles/custom.css" media="screen,projection" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
+
+
+  <script>
+    function callThis(){
+      console.log('update');
+        $('.collapsible').collapsible();  
+      };
+  </script>
 </head>
 
 <body>
@@ -36,8 +45,8 @@
     <!-- scripts -->
     <script src="/static/bundle.js"></script>
     <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="/src/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="/src/js/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
         $(".button-collapse").sideNav();
         $(document).ready(function() {
@@ -46,6 +55,10 @@
                 e.stopPropagation();
             });
         });
+      
+      function callThis(){
+        $('.collapsible1').collapsible();  
+      };
       
     </script>
     <!-- end scripts -->

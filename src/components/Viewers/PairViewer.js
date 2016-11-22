@@ -44,7 +44,6 @@ class PairViewer extends Component {
   }
 
   componentDidMount(){
-    console.log($('.collapsible').collapsible);
     $('.stop-propagation').on('click', function(e){
         e.stopPropagation();
     });
@@ -81,7 +80,8 @@ class PairViewer extends Component {
             {nameElement}
         </div>
         <div className="collapsible-body" style={{paddingLeft: 10}}>
-            <label>Value:</label><JSONViewer path={path} target={value} />
+            <label>Value:</label>
+              <JSONViewer path={path} target={value} />
         </div>
       </li>
     );
