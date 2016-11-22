@@ -38,3 +38,8 @@
    .input-field .prefix.active {
      color: #000;
    }
+
+.text-input{
+  height: 300px;
+  width: 100%;
+}

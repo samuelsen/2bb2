@@ -11,6 +11,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import App from './App';
 import Create from './components/Create';
 import Test from './components/Test';
+import Inspector from './components/Inspector';
 import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas';
 
@@ -42,7 +43,7 @@ render(
     <Router history={history}>
       <Route path="/" component={App} />
       <Route path="/test" component={Test} />
-      <Route path="/viewData/:namespace/:key" component={Test} />
+      <Route path="/view/:namespace/:key" component={Inspector} />
       <Route path="/create" component={Create} />
     </Router>
   </Provider>,

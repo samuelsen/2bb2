@@ -45,6 +45,10 @@ export default class JSONViewer extends Component {
       default: return (<p> {target.toString()}</p>); 
     }
   }
+  
+  click(){
+    $('.collapsible').collapsible();  
+  }
 
   render() {
     const {path, target} = this.props;
@@ -58,7 +62,7 @@ export default class JSONViewer extends Component {
           </div>
       );
 
-    return( <div>
+    return( <div onClick={this.click}>
               {content}
             </div>);
   }
