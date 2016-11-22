@@ -1,17 +1,10 @@
 
-import { List, Map } from 'immutable';
+import Immutable, { List, Map } from 'immutable';
 import { loadData } from '../actions/datastoreApi';
 
 const init = Map({ 
-    target: Map({
-        'dummyObject': Map({  
-          'dummy1': 'd1', 
-          'dummy2': Map({
-            "a": "faggot"
-          })}), 
-        dummyList: List([1, 2, "dummy3"]), 
-        "": "test"}),
-    initializeCollapsible: false});
+    target: null,
+  });
 
 function updateElement(target, elementPath, newValue){
   if(elementPath.size == 0){
@@ -49,6 +42,8 @@ export default function inspectorReducer(state=init, action) {
       return newState;
     case 'COLLAPSIBLE_INIT':
       return state.update("initializeCollapsible", (val) => false);
+    case 'DATA_FETCHED':
+      return state.update("target", (target) => Immutable.fromJS(action.data));
     default:
       return state;
   }

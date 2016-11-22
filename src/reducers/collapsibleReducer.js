@@ -9,9 +9,6 @@ export default function collapsibleReducer(state = new Map(), action) {
         entries.findIndex(item => item.namespace === action.namespace),
         entry => ({ namespace: entry.namespace, ids: action.keys })
       ));
-    case 'DATA_FETCHED':
-      /* TODO */
-      return state;
     case 'DATA_CREATED':
       /* TODO */
       return state;
