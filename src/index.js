@@ -10,7 +10,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from './App';
 import Create from './components/Create';
-import Test from './components/Test';
 import Inspector from './components/Inspector';
 import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas';

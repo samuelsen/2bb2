@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import JSONViewer from './Viewers/JSONViewer';
-import Immutable, { List } from 'immutable'
+import Immutable, { List } from 'immutable';
+import { loadData } from './../actions/datastoreApi'
 
 import * as InspectorActions from './../actions/Inspector';
 
@@ -13,24 +14,42 @@ class Inspector extends Component {
 
   constructor(props) {
     super(props);
+
+    const { namespace, key } = this.props.params;
+
+    //var data = loadData(namespace + "/" + key);
+
+    //console.log(data);
+
+    //this.props.setTarget(JSON.parse(data));
+  }
+
+  componentDidMount() {
+    this.props.fetchData(this.props.params.namespace, this.props.params.key);
   }
   
   props: {
+    params: {
+      namespace: string,
+      key: string,
+    },
     target: "defaultString",
     setTarget: React.PropTypes.func.isRequired,
-  }
-
-  tick(){
-    console.log("test");
+    fetchData: () => {},
   }
 
   render() {
     const { target, setTarget } = this.props;
 
-    var textArea = <textarea id="jsonText" className="text-input" defaultValue={JSON.stringify(target)}/>; 
-    if(target.toJS)
-      <textarea id="jsonText" defaultValue={JSON.stringify(target.toJS())}/>
+    var textArea = <textarea id="jsonText" className="text-input" defaultValue={JSON.stringify(target)}/>;
 
+    var jsonViewer = <label>Loading...</label>;
+    if(target != null){
+      jsonViewer = <JSONViewer path={List([])} target={target}/>;
+
+      if(target.toJS)
+        <textarea id="jsonText" defaultValue={JSON.stringify(target.toJS())}/> 
+    }
     
     const modal = <div id='addModal' className="modal">
                     <div className="modal-content">
@@ -42,7 +61,7 @@ class Inspector extends Component {
                   </div>; 
 
     return (<div>
-              <JSONViewer path={List([])} target={target}/>
+              {jsonViewer}
               {textArea}                
               <button className="btn waves-effect waves-light red" onClick={event => setTarget(Immutable.fromJS(JSON.parse($("textarea#jsonText").val())))}>Import</button>
               <button className="btn waves-effect waves-light red" onClick={event => {
@@ -56,8 +75,19 @@ class Inspector extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchData: (namespace, key) => dispatch({
+      type: "FETCH_DATA",
+      namespace,
+      key,
+    }),
+    InspectorActions,
+  };
+}
+
 function mapStateToProps(state) {
   return { target: state.inspector.get('target') };
 }
 
-export default connect(mapStateToProps, InspectorActions)(Inspector);
+export default connect(mapStateToProps, mapDispatchToProps)(Inspector);
