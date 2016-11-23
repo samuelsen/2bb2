@@ -42,7 +42,7 @@ export default class Collapsible extends Component {
           {this.props.namespace}
         </div>
         <div className="collapsible-body">
-          {this.props.ids.map(id => <p key={id}>{id} <a href={"view/" + this.props.namespace + "/" + id} className="right btn red"><i className="small material-icons">open_in_new</i></a></p>)}
+          {this.props.ids.map(id => <p key={id}>{id} <a href={`view/${this.props.namespace}/${id}`} className="right btn red"><i className="small material-icons">open_in_new</i></a></p>)}
         </div>
       </li>
     );

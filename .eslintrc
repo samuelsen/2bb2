@@ -16,7 +16,7 @@
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
     "react/jsx-filename-extension": "off",
-    "react/forbid-prop-types": 0
+    "jsx-a11y/no-static-element-interactions": "off",
   },
   "plugins": [
     "react"
