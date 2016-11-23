@@ -5,41 +5,56 @@
 }
 
 .rotate{
-    -moz-transform:rotate(-90deg);
-    -ms-transform:rotate(-90deg);
-    -o-transform:rotate(-90deg);
-    -webkit-transform:rotate(-90deg);
+  -moz-transform:rotate(-90deg);
+  -ms-transform:rotate(-90deg);
+  -o-transform:rotate(-90deg);
+  -webkit-transform:rotate(-90deg);
 }
 
-  /* label color */
-   .input-field label {
-     color: #bebebe;
-   }
-   /* label focus color */
-   .input-field input[type=text]:focus + label {
-     color: #000;
-   }
-   /* label underline focus color */
-   .input-field input[type=text]:focus {
-     border-bottom: 1px solid #000;
-     box-shadow: 0 1px 0 0 #000;
-   }
-   /* valid color */
-   .input-field input[type=text].valid {
-     border-bottom: 1px solid #000;
-     box-shadow: 0 1px 0 0 #000;
-   }
-   /* invalid color */
-   .input-field input[type=text].invalid {
-     border-bottom: 1px solid #000;
-     box-shadow: 0 1px 0 0 #000;
-   }
-   /* icon prefix focus color */
-   .input-field .prefix.active {
-     color: #000;
-   }
+/* label color */
+.input-field label {
+  color: #bebebe;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #000;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #000;
+}
 
 .text-input{
   height: 300px;
   width: 100%;
+}
+
+.btn-margs{
+    margin: auto 10px;
+}
+
+.black-link{
+    color: black;
+}
+
+.btn-red{
+    font-size: 2px;
+    color: white;
+    background-color: red;
+    padding: 7px 8px 7px 8px;
 }
