@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import Immutable, { List } from 'immutable';
 import JSONViewer from './Viewers/JSONViewer';
+import CollapsibleSearch from './CollapsibleSearch';
+
 
 import * as InspectorActions from './../actions/inspectorActions';
 
@@ -36,7 +38,7 @@ class Inspector extends Component {
                       <button className="btn red modal-action modal-close waves-effect waves-green" onClick={() => setTarget(JSON.parse($("#inserted-json").val()))}>Import</button>
                     </div>
                   </div>;
-            
+
     let jsonViewer = <label>Loading...</label>;
     if (target != null) {
       jsonViewer = <JSONViewer path={new List([])} target={target}/>;
@@ -44,10 +46,13 @@ class Inspector extends Component {
 
     return (
       <div>
-        {modal}
-        <a className="waves-effect waves-light btn btn-margs red" href="#modal1">Import</a>
+        <div className="row">
+          <div className="col s12">
+          <div className="col s6">
+          <CollapsibleSearch />
+          </div>
         <button
-          className="btn btn-margs waves-effect waves-light red"
+          className="btn btn-margs waves-effect waves-light red right"
           onClick={() => {
             if (typeof target === 'object') {
               this.props.putData(
@@ -62,12 +67,17 @@ class Inspector extends Component {
               this.props.params.key,
               JSON.stringify(target)
             );
-            return $('textarea#inserted-json').val(JSON.stringify(target));
+            return $('textarea#inserted-json', '#inserted-json').val(JSON.stringify(target));
           }}
         >
           Save
         </button>
+          <a className="waves-effect waves-light btn btn-margs red right" href="#modal1">Import</a>
+          </div>
+        </div>
+        <hr />
         {jsonViewer}
+        {modal}
     </div>
     );
   }

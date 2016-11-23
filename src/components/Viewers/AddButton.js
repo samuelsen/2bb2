@@ -6,7 +6,7 @@ function AddButton(props) {
   const { path, addElement } = props;
   return (
     <a
-      className="btn-floating btn-margs-top btn-medium waves-effect waves-light red right"
+      className="btn-floating btn-add-margs btn-medium waves-effect waves-light red right"
       onClick={() => addElement(path)}
     >
       <i className="material-icons">add</i>

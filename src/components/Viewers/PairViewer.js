@@ -51,10 +51,10 @@ class PairViewer extends Component {
     if (typeof name === 'string') {
       nameElement = (
         <div>
-          <label>Name:</label>
-          <div className="input-field" style={{ display: 'inline-block', paddingLeft: 5 }}>
+          <label className="type-padding">Name:</label>
+          <div className="input-field" style={{ display: 'inline-block', width: "250px"}}>
             <input
-              className="stop-propagation"
+              className="stop-propagation "
               defaultValue={name}
               onBlur={event => updateName(path, event.target.value)}
               type="text"
@@ -63,6 +63,9 @@ class PairViewer extends Component {
         </div>
       );
     }
+    else if (typeof name === 'number'){
+      nameElement = "index: " + name
+    }
 
     var viewer = null;
     if(this.state.open)
@@ -70,19 +73,20 @@ class PairViewer extends Component {
 
     return (
       <li>
-        <div className="collapsible-header" onClick={this.toggleOpen}>
+        <div className="collapsible-header extra-padding" onClick={this.toggleOpen}>
           <i className="material-icons">{this.getIcon()}</i>
           <div>
-            <span>{nameElement}</span>
-            <label  className="btn-margin">Type:</label>
-            <div className="stop-propagation btn-margin" style={{ display: 'inline-block', paddingLeft: 5 }}>
+            <span className="col s8">{nameElement}</span>
+            <label className="type-padding">Type:</label>
+            <div className="stop-propagation btn-margin" style={{ display: 'inline-block' }}>
               <TypePicker path={path} type={getType(value)} />
             </div>
           </div>
-          
         </div>
-        <div className="collapsible-body" style={{ paddingLeft: 10 }}>
-          <label>Value:</label>
+        <div className="collapsible-body level-down">
+          <div className="value-padding">
+            <label>Value:</label>
+          </div>
           {viewer}
         </div>
       </li>

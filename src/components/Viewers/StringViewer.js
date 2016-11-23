@@ -10,7 +10,7 @@ function StringViewer(props) {
         value={text}
         onChange={event => updateElement(path, event.target.value)}
         type="text"
-        
+
       />
     </div>
   );
