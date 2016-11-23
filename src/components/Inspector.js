@@ -67,7 +67,7 @@ class Inspector extends Component {
             return $('textarea#inserted-json').val(JSON.stringify(target));
           }}
         >
-          Export
+          Save
         </button>     
     </div>
     );
