@@ -34,8 +34,8 @@
     <div class="container">
         <div class="row">
             <div id="app" class="col s12"></div>
-        </div>
-    </div>
+        </div>    
+  </div>
     <!-- end app render -->
     <!-- scripts -->
     <script src="/static/bundle.js"></script>
@@ -52,6 +52,11 @@
                 e.stopPropagation();
             });
         });
+        $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+          
 
         function collapsibleInit(){
             if(document.collapsibleNeedsInit){
