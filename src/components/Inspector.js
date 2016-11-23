@@ -27,6 +27,7 @@ class Inspector extends Component {
     const { target, setTarget } = this.props;
 
     const textArea = <textarea id="jsonText" className="text-input" defaultValue={JSON.stringify(target)} />;
+    
     const modal = <div id="modal1" className="modal bottom-sheet">
           <div className="modal-content">
             <h4>Insert JSON data</h4>
