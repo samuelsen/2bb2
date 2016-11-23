@@ -38,11 +38,15 @@ export default class Collapsible extends Component {
     return (
       <li>
         <div className="collapsible-header" onClick={this.toggleOpen}>
-          <i className="material-icons">{this.getIcon()}</i>
+          <i className="material-icons right">delete</i>
+          <i className="material-icons right">{this.getIcon()}</i>
           {this.props.namespace}
         </div>
         <div className="collapsible-body">
-          {this.props.ids.map(id => <p key={id}>{id} <a href={`view/${this.props.namespace}/${id}`} className="right btn red"><i className="small material-icons">open_in_new</i></a></p>)}
+          {this.props.ids.map(id => <p key={id}>{id} 
+                <a className="right btn-margs btn-red"><i className="material-icons">delete</i></a>
+                <a href={"view/" + this.props.namespace + "/" + id} className="right btn-margs btn-red"><i className="material-icons">open_in_new</i></a>
+            </p>)}
         </div>
       </li>
     );

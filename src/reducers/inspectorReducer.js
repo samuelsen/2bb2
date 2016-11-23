@@ -31,6 +31,9 @@ export default function inspectorReducer(state = new Map(), action) {
       return state.set('initializeCollapsible', false);
     case 'DATA_FETCHED':
       document.collapsibleNeedsInit = true;
+      console.log("reducer");
+      console.log(action.data);
+      console.log(Immutable.fromJS(action.data));
       return state.set('target', Immutable.fromJS(action.data));
     default:
       return state;
