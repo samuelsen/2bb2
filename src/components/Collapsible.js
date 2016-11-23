@@ -10,6 +10,8 @@ export default class Collapsible extends Component {
       open: false,
     };
     this.toggleOpen = this.toggleOpen.bind(this);
+    this.removeNamespace = this.removeNamespace.bind(this);
+    this.removeKey = this.removeKey.bind(this);
   }
 
   state: {
@@ -28,25 +30,43 @@ export default class Collapsible extends Component {
     });
   }
 
+  removeNamespace() {
+    this.props.deleteNamespace(this.props.namespace);
+  }
+
+  removeKey(key) {
+    this.props.deleteKey(this.props.namespace, key);
+  }
+
   props: {
     namespace: string,
     ids: string[],
+    deleteKey: () => {},
+    deleteNamespace: () => {},
   }
 
 
   render() {
     return (
       <li>
+        <a href="#deleteNamespace" className="right btn-margs btn-red">
+          {/* TODO: Make B-E-A-UTIFAL */}
+          <i className="material-icons" onClick={this.removeNamespace}>delete</i>
+        </a>
         <div className="collapsible-header" onClick={this.toggleOpen}>
-          <i className="material-icons right">delete</i>
           <i className="material-icons right">{this.getIcon()}</i>
           {this.props.namespace}
         </div>
         <div className="collapsible-body">
-          {this.props.ids.map(id => <p key={id}>{id} 
-                <a className="right btn-margs btn-red"><i className="material-icons">delete</i></a>
-                <a href={"view/" + this.props.namespace + "/" + id} className="right btn-margs btn-red"><i className="material-icons">open_in_new</i></a>
-            </p>)}
+          {this.props.ids.map(id => <p key={id}>
+            {id}
+            <a href="#deleteKey" className="right btn-margs btn-red" onClick={() => this.removeKey(id)}>
+              <i className="material-icons">delete</i>
+            </a>
+            <a href={`view/${this.props.namespace}/${id}`} className="right btn-margs btn-red">
+              <i className="material-icons">open_in_new</i>
+            </a>
+          </p>)}
         </div>
       </li>
     );

@@ -1,5 +1,10 @@
 import { List, Map } from 'immutable';
 
+function immutableDelete(array, item) {
+  const idx = array.indexOf(item);
+  return array.slice(0, idx).concat(array.slice(idx + 1));
+}
+
 export default function collapsibleReducer(state = new Map(), action) {
   switch (action.type) {
     case 'NAMESPACES_FETCHED':
@@ -16,11 +21,17 @@ export default function collapsibleReducer(state = new Map(), action) {
       /* TODO */
       return state;
     case 'NAMESPACE_DELETED':
-      /* TODO */
-      return state;
+      return state.update('entries', entries => entries.remove(
+        entries.findIndex(item => item.namespace === action.namespace)
+      ));
     case 'KEY_DELETED':
-      /* TODO */
-      return state;
+      return state.update('entries', entries => entries.update(
+        entries.findIndex(item => item.namespace === action.namespace),
+        entry => ({
+          namespace: entry.namespace,
+          ids: immutableDelete(entry.ids, action.key),
+        })
+      ));
     case 'FETCH_FAILED':
     case 'CREATE_FAILED':
     case 'DELETE_FAILED':

@@ -26,6 +26,8 @@ class CollapsibleList extends Component {
     }],
     fetchNamespaces: () => {},
     fetchKeys: () => {},
+    deleteKey: () => {},
+    deleteNamespace: () => {},
   }
 
 
@@ -36,6 +38,8 @@ class CollapsibleList extends Component {
           {this.props.entries && this.props.entries.map(
             entry =>
               <Collapsible
+                deleteKey={this.props.deleteKey}
+                deleteNamespace={this.props.deleteNamespace}
                 key={entry.namespace}
                 namespace={entry.namespace}
                 ids={entry.ids}
@@ -54,6 +58,15 @@ function mapDispatchToProps(dispatch) {
     }),
     fetchKeys: namespace => dispatch({
       type: 'FETCH_KEYS',
+      namespace,
+    }),
+    deleteKey: (namespace, key) => dispatch({
+      type: 'DELETE_KEY',
+      namespace,
+      key,
+    }),
+    deleteNamespace: namespace => dispatch({
+      type: 'DELETE_NAMESPACE',
       namespace,
     }),
   };
