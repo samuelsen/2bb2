@@ -18,7 +18,7 @@ function* fetchNamespaces() {
     const data = yield call(loadData, '');
     yield put({
       type: 'NAMESPACES_FETCHED',
-      entries: data.map(namespace => ({ namespace, ids: [] })),
+      entries: data.map(namespace => ({ namespace, ids: [], visible: true })),
     });
   } catch (error) {
     yield put({ type: 'FETCH_FAILED', error });

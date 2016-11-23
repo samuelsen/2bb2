@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Collapsible from './Collapsible';
+import CollapsibleSearch from './CollapsibleSearch';
 
 class CollapsibleList extends Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class CollapsibleList extends Component {
     entries: [{
       namespace: string,
       ids: string[],
+      visible: boolean,
     }],
     fetchNamespaces: () => {},
     fetchKeys: () => {},
@@ -34,17 +36,24 @@ class CollapsibleList extends Component {
   render() {
     return (
       <div>
+        <CollapsibleSearch />
         <ul className="collapsible" data-collapsible="expandable">
           {this.props.entries && this.props.entries.map(
-            entry =>
-              <Collapsible
-                deleteKey={this.props.deleteKey}
-                deleteNamespace={this.props.deleteNamespace}
-                key={entry.namespace}
-                namespace={entry.namespace}
-                ids={entry.ids}
-              />
-          )}
+            (entry) => {
+              if (entry.visible) {
+                return (
+                  <Collapsible
+                    deleteKey={this.props.deleteKey}
+                    deleteNamespace={this.props.deleteNamespace}
+                    key={entry.namespace}
+                    namespace={entry.namespace}
+                    ids={entry.ids}
+                  />
+                );
+              }
+              return null;
+            }
+        )}
         </ul>
       </div>
     );
