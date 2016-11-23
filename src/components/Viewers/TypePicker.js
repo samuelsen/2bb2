@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Map, List } from 'immutable';
 import React from 'react';
-import * as InspectorActions from './../../actions/Inspector';
+import * as InspectorActions from './../../actions/inspectorActions';
 
 const $ = require('jquery');
 

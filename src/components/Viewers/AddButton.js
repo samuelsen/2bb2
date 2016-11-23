@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import * as InspectorActions from './../../actions/Inspector';
+import * as InspectorActions from './../../actions/inspectorActions';
 
 function AddButton(props) {
   const { path, addElement } = props;

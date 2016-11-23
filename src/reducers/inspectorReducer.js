@@ -1,10 +1,6 @@
 import Immutable, { Map } from 'immutable';
 
-const init = new Map({
-  target: null,
-});
-
-export default function inspectorReducer(state = init, action) {
+export default function inspectorReducer(state = new Map(), action) {
   switch (action.type) {
     case 'UPDATE_ELEMENT':
       if (action.path.count() === 0) {
