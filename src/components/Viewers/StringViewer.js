@@ -5,11 +5,12 @@ import * as InspectorActions from './../../actions/inspectorActions';
 function StringViewer(props) {
   const { path, text, updateElement } = props;
   return (
-    <div>
+    <div className="input-field">
       <input
         value={text}
         onChange={event => updateElement(path, event.target.value)}
         type="text"
+        
       />
     </div>
   );

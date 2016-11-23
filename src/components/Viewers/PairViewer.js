@@ -53,7 +53,7 @@ class PairViewer extends Component {
       nameElement = (
         <div>
           <label>Name:</label>
-          <div style={{ display: 'inline-block', paddingLeft: 5 }}>
+          <div className="input-field" style={{ display: 'inline-block', paddingLeft: 5 }}>
             <input
               className="stop-propagation"
               defaultValue={name}

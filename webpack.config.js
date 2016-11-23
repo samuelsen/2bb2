@@ -16,7 +16,7 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
     loaders: [{
@@ -24,5 +24,5 @@ module.exports = {
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
     }]
-  }
+  },
 };
