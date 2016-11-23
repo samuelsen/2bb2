@@ -47,6 +47,9 @@
 .btn-margs{
     margin-right: 10px;
 }
+.btn-margs-top{
+    margin-top: 10px;
+}
 
 .black-link{
     color: black;
