@@ -18,7 +18,7 @@ export default function inspectorReducer(state = new Map(), action) {
         return val.set(action.newValue, tmp);
       }));
     case 'SET_TARGET':
-      return state.set('target', action.newTarget);
+      return state.set('target', Immutable.fromJS(action.newTarget));
     case 'ADD_ELEMENT':
       document.collapsibleNeedsInit = true;
       return state.update('target', val => val.updateIn(action.path, (target) => {
