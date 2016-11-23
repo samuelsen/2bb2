@@ -12,7 +12,7 @@ export default function collapsibleReducer(state = new Map(), action) {
     case 'KEYS_FETCHED':
       return state.update('entries', entries => entries.update(
         entries.findIndex(item => item.namespace === action.namespace),
-        entry => ({ namespace: entry.namespace, ids: action.keys })
+        entry => ({ namespace: entry.namespace, ids: action.keys, visible: entry.visible })
       ));
     case 'DATA_CREATED':
       /* TODO */
@@ -30,6 +30,15 @@ export default function collapsibleReducer(state = new Map(), action) {
         entry => ({
           namespace: entry.namespace,
           ids: immutableDelete(entry.ids, action.key),
+          visible: entry.visible,
+        })
+      ));
+    case 'APPLY_FILTER':
+      return state.update('entries', entries => entries.map(
+        entry => ({
+          namespace: entry.namespace,
+          ids: entry.ids,
+          visible: entry.namespace.indexOf(action.text) !== -1,
         })
       ));
     case 'FETCH_FAILED':
