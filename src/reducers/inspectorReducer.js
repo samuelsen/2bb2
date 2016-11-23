@@ -4,17 +4,6 @@ const init = new Map({
   target: null,
 });
 
-function updateElement(target, elementPath, newValue) {
-  if (elementPath.size === 0) {
-    return newValue;
-  }
-  return updateElement(
-    target.get(elementPath.first()),
-    elementPath.pop(),
-    newValue
-  );
-}
-
 export default function inspectorReducer(state = init, action) {
   switch (action.type) {
     case 'UPDATE_ELEMENT':
@@ -26,8 +15,8 @@ export default function inspectorReducer(state = init, action) {
       );
     case 'UPDATE_NAME':
       const name = action.path.last();
-      const path = action.path.splice(-1,1);
-      return state.update('target', (target) => target.updateIn(path, (val) => {
+      const path = action.path.splice(-1, 1);
+      return state.update('target', target => target.updateIn(path, (val) => {
         const tmp = val.get(name);
         val = val.delete(name);
         return val.set(action.newValue, tmp);

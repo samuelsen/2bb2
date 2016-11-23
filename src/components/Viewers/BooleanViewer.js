@@ -1,24 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import TypePicker from './TypePicker';
-
-export default class BooleanViewer extends Component{
-    constructor(props){
-        super(props);
-    }
-
-    props: {
-        path: object,
-        value: boolean,
-    }
-
-    render(){
-        var value = "False";
-        if(this.props.value)
-            value = "True";
-
-        return (<div>
-                    {value}
-                </div>);
-    }
+export default function BooleanViewer(props) {
+  const { value } = props;
+  return (
+    <div>
+      {value ? 'True' : 'False'}
+    </div>
+  );
 }
+
+BooleanViewer.propTypes = {
+  value: React.PropTypes.bool,
+};
