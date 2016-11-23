@@ -27,8 +27,6 @@ class Inspector extends Component {
 
   render() {
     const { target, setTarget } = this.props;
-
-    const textArea = <textarea id="jsonText" className="text-input" defaultValue={JSON.stringify(target)} />;
     const modal = <div id="modal1" className="modal bottom-sheet">
                     <div className="modal-content">
                       <h4>Insert JSON data</h4>
@@ -60,14 +58,14 @@ class Inspector extends Component {
                 this.props.params.key,
                 JSON.stringify(target.toJS())
               );
-              return $('textarea#textArea', '#inserted-json').val(JSON.stringify(target.toJS()));
+              return $('#inserted-json').val(JSON.stringify(target.toJS()));
             }
             this.props.putData(
               this.props.params.namespace,
               this.props.params.key,
               JSON.stringify(target)
             );
-            return $('textarea#inserted-json', '#inserted-json').val(JSON.stringify(target));
+            return $('#inserted-json').val(JSON.stringify(target));
           }}
         >
           Save
