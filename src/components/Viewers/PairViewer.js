@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import JSONViewer from './JSONViewer';
 
-import * as InspectorActions from './../../actions/Inspector';
+import * as InspectorActions from './../../actions/inspectorActions';
 import TypePicker, { getType } from './TypePicker';
 
 const $ = require('jquery');
