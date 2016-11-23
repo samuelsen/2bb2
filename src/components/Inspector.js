@@ -26,11 +26,7 @@ class Inspector extends Component {
   render() {
     const { target, setTarget } = this.props;
 
-<<<<<<< HEAD
     const textArea = <textarea id="jsonText" className="text-input" defaultValue={JSON.stringify(target)} />;
-    
-=======
->>>>>>> master
     const modal = <div id="modal1" className="modal bottom-sheet">
                     <div className="modal-content">
                       <h4>Insert JSON data</h4>
@@ -49,7 +45,6 @@ class Inspector extends Component {
     return (
       <div>
         {modal}
-        {jsonViewer}
         <a className="waves-effect waves-light btn btn-margs red" href="#modal1">Import</a>
         <button
           className="btn btn-margs waves-effect waves-light red"
@@ -71,7 +66,8 @@ class Inspector extends Component {
           }}
         >
           Save
-        </button>     
+        </button>
+        {jsonViewer}
     </div>
     );
   }

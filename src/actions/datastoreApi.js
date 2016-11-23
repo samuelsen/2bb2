@@ -2,7 +2,7 @@ const basicAuth = `Basic ${btoa('admin:district')}`;
 
 const $ = require('jquery');
 
-const api = 'https://play.dhis2.org/dev/api/25/dataStore/';
+const api = 'https://play.dhis2.org/demo/api/25/dataStore/';
 
 /* Issues a PUT-request to the DHIS datastore */
 export function putData(text, body) {

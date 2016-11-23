@@ -35,9 +35,7 @@ class PairViewer extends Component {
 
   getIcon() {
     return (
-      this.state.open
-      ? 'trending_down'
-      : 'trending_flat'
+      this.state.open ? 'visibility_off' : 'visibility'
     );
   }
 
@@ -74,13 +72,14 @@ class PairViewer extends Component {
       <li>
         <div className="collapsible-header" onClick={this.toggleOpen}>
           <i className="material-icons">{this.getIcon()}</i>
-          <div style={{ display: 'inline-block' }}>
-            <label>Type:</label>
-            <div className="stop-propagation" style={{ display: 'inline-block', paddingLeft: 5 }}>
+          <div>
+            <span>{nameElement}</span>
+            <label  className="btn-margin">Type:</label>
+            <div className="stop-propagation btn-margin" style={{ display: 'inline-block', paddingLeft: 5 }}>
               <TypePicker path={path} type={getType(value)} />
             </div>
           </div>
-          {nameElement}
+          
         </div>
         <div className="collapsible-body" style={{ paddingLeft: 10 }}>
           <label>Value:</label>
