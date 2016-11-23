@@ -26,27 +26,25 @@ class Inspector extends Component {
   render() {
     const { target, setTarget } = this.props;
 
-    const textArea = <textarea id="jsonText" className="text-input" defaultValue={JSON.stringify(target)} />;
     const modal = <div id="modal1" className="modal bottom-sheet">
-          <div className="modal-content">
-            <h4>Insert JSON data</h4>
-            <textarea id="inserted-json" className="text-input"></textarea>
-          </div>
-          <div className="modal-footer">
-            <button className="btn red modal-action modal-close waves-effect waves-green" >Import</button>
-          </div>
-      </div>;
+                    <div className="modal-content">
+                      <h4>Insert JSON data</h4>
+                      <textarea id="inserted-json" className="text-input"></textarea>
+                    </div>
+                    <div className="modal-footer">
+                      <button className="btn red modal-action modal-close waves-effect waves-green" onClick={() => setTarget(JSON.parse($("#inserted-json").val()))}>Import</button>
+                    </div>
+                  </div>;
             
     let jsonViewer = <label>Loading...</label>;
     if (target != null) {
-      jsonViewer = <JSONViewer path={new List([])} target={target} />;
+      jsonViewer = <JSONViewer path={new List([])} target={target}/>;
     }
 
     return (
       <div>
         {modal}
         {jsonViewer}
-        {textArea}
         <a className="waves-effect waves-light btn btn-margs red" href="#modal1">Import</a>
         <button
           className="btn btn-margs waves-effect waves-light red"
@@ -87,7 +85,10 @@ function mapDispatchToProps(dispatch) {
       namespace,
       key,
     }),
-    InspectorActions,
+    setTarget: (newTarget) => dispatch({
+      type: 'SET_TARGET',
+      newTarget: newTarget,
+    }),
   };
 }
 
