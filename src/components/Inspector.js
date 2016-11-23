@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Immutable, { List } from 'immutable';
 import JSONViewer from './Viewers/JSONViewer';
 
-import * as InspectorActions from './../actions/Inspector';
+import * as InspectorActions from './../actions/inspectorActions';
 
 const $ = require('jquery');
 
