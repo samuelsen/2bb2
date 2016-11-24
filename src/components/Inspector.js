@@ -50,8 +50,9 @@ class Inspector extends Component {
       <div>
         <div className="row">
           <div className="col s12">
-            <div className="col s6">
-              <CollapsibleSearch />
+            <div className="col s6 input-field">
+              <input id="search" type="text" />
+              <label htmlFor="search">Search</label>
             </div>
             <button
               className="btn btn-margs waves-effect waves-light red right"
