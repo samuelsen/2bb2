@@ -49,12 +49,13 @@ export default class Collapsible extends Component {
   render() {
     return (
       <li>
-        <div className="collapsible-header" onClick={this.toggleOpen}>
+        <div className="right btn-delete">
           <a href="#deleteNamespace" className="right btn-margs black-link">
-            {/* TODO: Make B-E-A-UTIFAL */}
             <i className="material-icons" onClick={this.removeNamespace}>delete</i>
           </a>
-          <i className="material-icons right">{this.getIcon()}</i>
+        </div>
+        <div className="collapsible-header" onClick={this.toggleOpen}>
+          <i className="material-icons right collapsible-border">{this.getIcon()}</i>
           {this.props.namespace}
         </div>
         <div className="collapsible-body">

@@ -85,6 +85,17 @@
     padding: 7px 8px 7px 8px;
 }
 
+.btn-delete{
+  padding: 10px 4px 0px 0px;
+}
+
+.collapsible-border {
+    border-right: 1px lightgrey inset;
+    padding-right: 40px;
+}
+
+
+
 /*Select hack*/
 .styled-select {
    height: 29px;
