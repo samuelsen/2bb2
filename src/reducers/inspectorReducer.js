@@ -10,8 +10,8 @@ export default function inspectorReducer(state = new Map(), action) {
         target.updateIn(action.path, () => action.newValue)
       );
     case 'UPDATE_NAME':
-      const name = action.path.last();
-      const path = action.path.splice(-1, 1);
+      var name = action.path.last();
+      var path = action.path.splice(-1, 1);
       return state.update('target', target => target.updateIn(path, (val) => {
         const tmp = val.get(name);
         val = val.delete(name);
@@ -26,6 +26,12 @@ export default function inspectorReducer(state = new Map(), action) {
           return target.set('', '');
         }
         return target.push('');
+      }));
+    case 'DEL_ELEMENT':
+      var name = action.path.last();
+      var path = action.path.splice(-1, 1);
+      return state.update('target', target => target.updateIn(path, (val) => {
+        return val.delete(name);
       }));
     case 'COLLAPSIBLE_INIT':
       return state.set('initializeCollapsible', false);
