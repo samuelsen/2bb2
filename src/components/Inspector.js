@@ -1,11 +1,8 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import Immutable, { List } from 'immutable';
+import { List } from 'immutable';
 import JSONViewer from './Viewers/JSONViewer';
 import CollapsibleSearch from './CollapsibleSearch';
-
-
-import * as InspectorActions from './../actions/inspectorActions';
 
 const $ = require('jquery');
 
@@ -27,56 +24,63 @@ class Inspector extends Component {
 
   render() {
     const { target, setTarget } = this.props;
-    const modal = <div id="modal1" className="modal bottom-sheet">
-                    <div className="modal-content">
-                      <h4>Insert JSON data</h4>
-                      <textarea id="inserted-json" className="text-input"></textarea>
-                    </div>
-                    <div className="modal-footer">
-                      <button className="btn red modal-action modal-close waves-effect waves-green" onClick={() => setTarget(JSON.parse($("#inserted-json").val()))}>Import</button>
-                    </div>
-                  </div>;
+    const modal = (
+      <div id="modal1" className="modal bottom-sheet">
+        <div className="modal-content">
+          <h4>Insert JSON data</h4>
+          <textarea id="inserted-json" className="text-input" />
+        </div>
+        <div className="modal-footer">
+          <button
+            className="btn red modal-action modal-close waves-effect waves-green"
+            onClick={() => setTarget(JSON.parse($('#inserted-json').val()))}
+          >
+            Import
+          </button>
+        </div>
+      </div>
+    );
 
     let jsonViewer = <label>Loading...</label>;
     if (target != null) {
-      jsonViewer = <JSONViewer path={new List([])} target={target}/>;
+      jsonViewer = <JSONViewer path={new List([])} target={target} />;
     }
 
     return (
       <div>
         <div className="row">
           <div className="col s12">
-          <div className="col s6">
-          <CollapsibleSearch />
-          </div>
-        <button
-          className="btn btn-margs waves-effect waves-light red right"
-          onClick={() => {
-            if (typeof target === 'object') {
-              this.props.putData(
-                this.props.params.namespace,
-                this.props.params.key,
-                JSON.stringify(target.toJS())
-              );
-              return $('#inserted-json').val(JSON.stringify(target.toJS()));
-            }
-            this.props.putData(
-              this.props.params.namespace,
-              this.props.params.key,
-              JSON.stringify(target)
-            );
-            return $('#inserted-json').val(JSON.stringify(target));
-          }}
-        >
-          Save
+            <div className="col s6">
+              <CollapsibleSearch />
+            </div>
+            <button
+              className="btn btn-margs waves-effect waves-light red right"
+              onClick={() => {
+                if (typeof target === 'object') {
+                  this.props.putData(
+                    this.props.params.namespace,
+                    this.props.params.key,
+                    JSON.stringify(target.toJS())
+                  );
+                  return $('#inserted-json').val(JSON.stringify(target.toJS()));
+                }
+                this.props.putData(
+                  this.props.params.namespace,
+                  this.props.params.key,
+                  JSON.stringify(target)
+                );
+                return $('#inserted-json').val(JSON.stringify(target));
+              }}
+            >
+              Save
         </button>
-          <a className="waves-effect waves-light btn btn-margs red right" href="#modal1">Import</a>
+            <a className="waves-effect waves-light btn btn-margs red right" href="#modal1">Import</a>
           </div>
         </div>
         <hr />
         {jsonViewer}
         {modal}
-    </div>
+      </div>
     );
   }
 }
@@ -94,9 +98,9 @@ function mapDispatchToProps(dispatch) {
       namespace,
       key,
     }),
-    setTarget: (newTarget) => dispatch({
+    setTarget: newTarget => dispatch({
       type: 'SET_TARGET',
-      newTarget: newTarget,
+      newTarget,
     }),
   };
 }

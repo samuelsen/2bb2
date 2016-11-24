@@ -18,12 +18,6 @@ class PairViewer extends Component {
     document.collapsibleNeedsInit = true;
   }
 
-  props: {
-    path: React.PropTypes.object,
-    name: React.PropTypes.string,
-    value: 'defaultString',
-    updateName: React.PropTypes.func.isRequired,
-  }
 
   state: {
     open: boolean,
@@ -39,6 +33,13 @@ class PairViewer extends Component {
     );
   }
 
+  props: {
+    path: React.PropTypes.object,
+    name: React.PropTypes.string,
+    value: 'defaultString',
+    updateName: React.PropTypes.func.isRequired,
+  }
+
   toggleOpen() {
     this.setState({
       open: !this.state.open,
@@ -52,7 +53,7 @@ class PairViewer extends Component {
       nameElement = (
         <div>
           <label className="type-padding">Name:</label>
-          <div className="input-field" style={{ display: 'inline-block', width: "250px"}}>
+          <div className="input-field" style={{ display: 'inline-block', width: '250px' }}>
             <input
               className="stop-propagation "
               defaultValue={name}
@@ -62,14 +63,14 @@ class PairViewer extends Component {
           </div>
         </div>
       );
-    }
-    else if (typeof name === 'number'){
-      nameElement = "index: " + name
+    } else if (typeof name === 'number') {
+      nameElement = `index: ${name}`;
     }
 
-    var viewer = null;
-    if(this.state.open)
-      viewer = <JSONViewer path={path} target={value}/>;
+    let viewer = null;
+    if (this.state.open) {
+      viewer = <JSONViewer path={path} target={value} />;
+    }
 
     return (
       <li>

@@ -3,8 +3,6 @@ import { Map, List } from 'immutable';
 import React from 'react';
 import * as InspectorActions from './../../actions/inspectorActions';
 
-const $ = require('jquery');
-
 function TypePicker(props) {
   const { path, type, setType } = props;
   return (
