@@ -1,5 +1,18 @@
 import Immutable, { Map } from 'immutable';
 
+function updateName(target, path, name, newName){
+  console.log(newName);
+  return target.updateIn(path,  (val) => {
+    var i;
+    for(i = 0; i < val._root.entries.length; i++){
+      if(val._root.entries[i][0] == name){
+        val._root.entries[i][0] = newName;
+        return val;
+      }
+    }  
+  });
+}
+
 export default function inspectorReducer(state = new Map(), action) {
   switch (action.type) {
     case 'UPDATE_ELEMENT':
@@ -12,11 +25,7 @@ export default function inspectorReducer(state = new Map(), action) {
     case 'UPDATE_NAME':
       var name = action.path.last();
       var path = action.path.splice(-1, 1);
-      return state.update('target', target => target.updateIn(path, (val) => {
-        const tmp = val.get(name);
-        val = val.delete(name);
-        return val.set(action.newValue, tmp);
-      }));
+      return state.update('target', (target) => updateName(target, path, name, action.newName));
     case 'SET_TARGET':
       return state.set('target', Immutable.fromJS(action.newTarget));
     case 'ADD_ELEMENT':
