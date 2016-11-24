@@ -58,16 +58,16 @@
             $('.stop-propagation').on('click', function(e){
                 e.stopPropagation();
             });
+            $('.modal').modal();
         });
         $(document).ready(function(){
           // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-          $('.modal').modal();
         });
-
 
         function collapsibleInit(){
             if(document.collapsibleNeedsInit){
                 $('.collapsible').collapsible();
+                $('select').material_select();
                 document.collapsibleNeedsInit = false;
             }
         }
