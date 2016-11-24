@@ -5,7 +5,7 @@ import * as InspectorActions from './../../actions/inspectorActions';
 function NumberViewer(props) {
   const { path, number, updateElement } = props;
   return (
-    <div>
+    <div className="input-field">
       <input type="number" pattern="[0-9]*" inputMode="numeric" value={number} onChange={event => updateElement(path, Number(event.target.value))} />
     </div>
   );

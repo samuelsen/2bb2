@@ -45,7 +45,7 @@ export default class JSONViewer extends Component {
         <div>
           <label>Type</label>
           <TypePicker path={path} type={getType(target)} />
-          <label>Value</label>
+          <label className="value-padding">Value</label>
           {content}
         </div>
       );

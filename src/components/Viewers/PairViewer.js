@@ -18,12 +18,6 @@ class PairViewer extends Component {
     document.collapsibleNeedsInit = true;
   }
 
-  props: {
-    path: React.PropTypes.object,
-    name: React.PropTypes.string,
-    value: 'defaultString',
-    updateName: React.PropTypes.func.isRequired,
-  }
 
   state: {
     open: boolean,
@@ -35,10 +29,15 @@ class PairViewer extends Component {
 
   getIcon() {
     return (
-      this.state.open
-      ? 'trending_down'
-      : 'trending_flat'
+      this.state.open ? 'visibility_off' : 'visibility'
     );
+  }
+
+  props: {
+    path: React.PropTypes.object,
+    name: React.PropTypes.string,
+    value: 'defaultString',
+    updateName: React.PropTypes.func.isRequired,
   }
 
   toggleOpen() {
@@ -53,10 +52,10 @@ class PairViewer extends Component {
     if (typeof name === 'string') {
       nameElement = (
         <div>
-          <label>Name:</label>
-          <div style={{ display: 'inline-block', paddingLeft: 5 }}>
+          <label className="type-padding">Name:</label>
+          <div className="input-field" style={{ display: 'inline-block', width: '250px' }}>
             <input
-              className="stop-propagation"
+              className="stop-propagation "
               defaultValue={name}
               onBlur={event => updateName(path, event.target.value)}
               type="text"
@@ -64,26 +63,31 @@ class PairViewer extends Component {
           </div>
         </div>
       );
+    } else if (typeof name === 'number') {
+      nameElement = `index: ${name}`;
     }
 
-    var viewer = null;
-    if(this.state.open)
-      viewer = <JSONViewer path={path} target={value}/>;
+    let viewer = null;
+    if (this.state.open) {
+      viewer = <JSONViewer path={path} target={value} />;
+    }
 
     return (
       <li>
-        <div className="collapsible-header" onClick={this.toggleOpen}>
+        <div className="collapsible-header extra-padding" onClick={this.toggleOpen}>
           <i className="material-icons">{this.getIcon()}</i>
-          <div style={{ display: 'inline-block' }}>
-            <label>Type:</label>
-            <div className="stop-propagation" style={{ display: 'inline-block', paddingLeft: 5 }}>
+          <div>
+            <span className="col s8">{nameElement}</span>
+            <label className="type-padding">Type:</label>
+            <div className="stop-propagation btn-margin" style={{ display: 'inline-block' }}>
               <TypePicker path={path} type={getType(value)} />
             </div>
           </div>
-          {nameElement}
         </div>
-        <div className="collapsible-body" style={{ paddingLeft: 10 }}>
-          <label>Value:</label>
+        <div className="collapsible-body level-down">
+          <div className="value-padding">
+            <label>Value:</label>
+          </div>
           {viewer}
         </div>
       </li>

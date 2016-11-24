@@ -4,13 +4,9 @@
     line-height: 30px;
 }
 
-.rotate{
-  -moz-transform:rotate(-90deg);
-  -ms-transform:rotate(-90deg);
-  -o-transform:rotate(-90deg);
-  -webkit-transform:rotate(-90deg);
+.input-field{
+  margin-top: 0rem;
 }
-
 /* label color */
 .input-field label {
   color: #bebebe;
@@ -47,6 +43,36 @@
 .btn-margs{
     margin-right: 10px;
 }
+.btn-margs-top{
+    margin-top: 10px;
+}
+
+.btn-add-margs{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.expandable-padding-bottom{
+  margin-bottom: 70px;
+}
+
+.level-down{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.extra-padding{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.type-padding{
+  padding-right: 10px;
+}
+
+.value-padding{
+  padding-top: 10px;
+}
 
 .black-link{
     color: black;
@@ -61,7 +87,6 @@
 
 /*Select hack*/
 .styled-select {
-   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
    height: 29px;
    overflow: hidden;
    width: 150px;
@@ -76,14 +101,9 @@
    width: 150px;
 }
 
-.styled-select.slate {
-   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
-   height: 34px;
-   width: 240px;
-}
 
 .styled-select.slate select {
-   border: 1px solid #ccc;
+   border: 1px solid #000000;
    font-size: 16px;
    height: 34px;
    width: 268px;
@@ -103,14 +123,14 @@
 }
 
 /* -------------------- Colors: Background */
-.slate   { background-color: #ddd; }
+.slate   { background-color: #ffffff; }
 .green   { background-color: #779126; }
 .blue    { background-color: #3b8ec2; }
 .yellow  { background-color: #eec111; }
 .black   { background-color: #000; }
 
 /* -------------------- Colors: Text */
-.slate select   { color: #000; }
+.slate select   { color: #ffffff; }
 .green select   { color: #fff; }
 .blue select    { color: #fff; }
 .yellow select  { color: #000; }

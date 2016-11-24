@@ -10,11 +10,13 @@ function ArrayViewer(props) {
   const values = target.keySeq().toArray();
   return (
     <div>
-      <ul className="collapsible" data-collapsible="expandable" style={{ marginBottom: 50 }}>
+      <ul className="collapsible expandable-padding-bottom" data-collapsible="expandable">
         {values.map(v =>
           <PairViewer path={path.push(v)} key={v} name={v} value={target.get(v)} />
         )}
-        <AddButton path={path} />
+        <li>
+          <AddButton path={path} />
+        </li>
       </ul>
     </div>
   );

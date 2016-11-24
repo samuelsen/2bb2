@@ -32,9 +32,9 @@ class ObjectViewer extends Component {
 
     return (
       <div>
-        <ul className="collapsible" data-collapsible="expandable" style={{ marginBottom: 50 }}>
+        <ul className="collapsible expandable-padding-bottom" data-collapsible="expandable">
           {content}
-          <AddButton path={path} />
+          <li><AddButton path={path} /></li>
         </ul>
       </div>
     );
