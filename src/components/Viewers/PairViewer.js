@@ -38,6 +38,7 @@ class PairViewer extends Component {
     name: React.PropTypes.string,
     value: 'defaultString',
     updateName: React.PropTypes.func.isRequired,
+    delElement: React.PropTypes.func.isRequired,
   }
 
   toggleOpen() {
@@ -47,7 +48,7 @@ class PairViewer extends Component {
   }
 
   render() {
-    const { path, name, value, updateName } = this.props;
+    const { path, name, value, updateName, delElement } = this.props;
     let nameElement = name;
     if (typeof name === 'string') {
       nameElement = (
@@ -82,6 +83,7 @@ class PairViewer extends Component {
             <div className="stop-propagation btn-margin" style={{ display: 'inline-block' }}>
               <TypePicker path={path} type={getType(value)} />
             </div>
+            <i className="material-icons" onClick={(event) => delElement(path)}>delete</i>
           </div>
         </div>
         <div className="collapsible-body level-down">
