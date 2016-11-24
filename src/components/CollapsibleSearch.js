@@ -45,8 +45,8 @@ class CollapsibleSearch extends Component {
             {this.state.currFilter}
           </a>
           <ul id="searchCriteria" className="dropdown-content">
-            <li><a href="#N" onClick={() => this.changeFilter('Namespace')}>Namespace</a></li>
-            <li><a href="#K" onClick={() => this.changeFilter('Key')}>Key</a></li>
+            <li><a href="#N" className="white-link" onClick={() => this.changeFilter('Namespace')}>Namespace</a></li>
+            <li><a href="#K" className="white-link" onClick={() => this.changeFilter('Key')}>Key</a></li>
           </ul>
         </div>
       </div>

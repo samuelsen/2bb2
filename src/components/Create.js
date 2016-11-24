@@ -10,6 +10,7 @@ class Create extends Component {
 
   props: {
     createData: () => {},
+    namespace: string,
   }
 
   save(e) {
@@ -24,7 +25,7 @@ class Create extends Component {
       <form className="col s12" onSubmit={this.save}>
         <div className="row">
           <div className="input-field col s12">
-            <input id="Namespace" type="text" className="validate" />
+            <input id="Namespace" type="text" className="validate" value={this.props.namespace} />
             <label htmlFor="Namespace">Namespace</label>
           </div>
         </div>
