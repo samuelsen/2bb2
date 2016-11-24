@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { List } from 'immutable';
 import JSONViewer from './Viewers/JSONViewer';
-import CollapsibleSearch from './CollapsibleSearch';
 
 const $ = require('jquery');
 
