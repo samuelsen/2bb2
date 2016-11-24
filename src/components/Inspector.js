@@ -41,7 +41,7 @@ class Inspector extends Component {
       </div>
     );
 
-    let jsonViewer = <label>Loading...</label>;
+    let jsonViewer = <div className="progress white"><div className="indeterminate red" /></div>;
     if (target != null) {
       jsonViewer = <JSONViewer path={new List([])} target={target} />;
     }
