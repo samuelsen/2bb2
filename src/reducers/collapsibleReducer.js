@@ -35,11 +35,13 @@ export default function collapsibleReducer(state = new Map(), action) {
       ));
     case 'APPLY_FILTER':
       return state.update('entries', entries => entries.map(
-        entry => ({
-          namespace: entry.namespace,
-          ids: entry.ids,
-          visible: entry.namespace.indexOf(action.text) !== -1,
-        })
+       entry => ({
+         namespace: entry.namespace,
+         ids: entry.ids,
+         visible: action.filter === 'Namespace'
+           ? entry.namespace.indexOf(action.text) > -1
+           : entry.ids.filter(item => item.indexOf(action.text) > -1).length > 0,
+       })
       ));
     case 'FETCH_FAILED':
     case 'CREATE_FAILED':
