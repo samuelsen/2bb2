@@ -100,6 +100,9 @@ function* createData(action) {
     const url = `${action.namespace}/${action.key}`;
     const body = action.body;
     yield call(postData, url, body, action.inCreate);
+    if (!action.inCreate) {
+      Materialize.toast(`${action.key} added to ${action.namespace}!`, 4000);
+    }
     yield put({
       type: 'DATA_CREATED',
       namespace: action.namespace,
