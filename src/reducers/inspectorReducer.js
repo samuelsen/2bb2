@@ -1,5 +1,25 @@
 import Immutable, { Map } from 'immutable';
 
+function updateName(target, path, name, newName){
+  console.log(newName);
+  return target.updateIn(path,  (val) => {
+    var keys = val.keySeq().toArray();
+
+    var newVal = Map({});
+
+    newVal = newVal.withMutations((map) => {
+      for(var i = 0; i < val.size; i++){
+        if(keys[i] == name)
+          map.set(newName, val.get(keys[i]));
+        else
+          map.set(keys[i], val.get(keys[i]));
+      }
+    });
+
+    return newVal;
+  });
+}
+
 export default function inspectorReducer(state = new Map(), action) {
   switch (action.type) {
     case 'UPDATE_ELEMENT':
