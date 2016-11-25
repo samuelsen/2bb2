@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Collapsible from './Collapsible';
 import CollapsibleSearch from './CollapsibleSearch';
 
+import AddKeyModal from './AddKeyModal';
+
 class CollapsibleList extends Component {
   componentDidMount() {
     this.props.fetchNamespaces();
@@ -36,6 +38,9 @@ class CollapsibleList extends Component {
   render() {
     return (
       <div>
+        {this.props.entries && this.props.entries.map(
+          entry => <AddKeyModal key={`modal${entry.namespace}`} namespace={entry.namespace} />
+        )}
         <CollapsibleSearch />
         <ul className="collapsible" data-collapsible="expandable">
           {this.props.entries && this.props.entries.map(
