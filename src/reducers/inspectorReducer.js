@@ -32,7 +32,11 @@ export default function inspectorReducer(state = new Map(), action) {
     case 'UPDATE_NAME':
       var name = action.path.last();
       var path = action.path.splice(-1, 1);
-      return state.update('target', (target) => updateName(target, path, name, action.newName));
+      return state.update('target', target => target.updateIn(path, (val) => {
+        const tmp = val.get(name);
+        val = val.delete(name);
+        return val.set(action.newValue, tmp);
+      }));
     case 'SET_TARGET':
       return state.set('target', Immutable.fromJS(action.newTarget));
     case 'ADD_ELEMENT':
