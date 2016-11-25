@@ -31,6 +31,13 @@ export function addElement(path) {
   };
 }
 
+export function delElement(path) {
+  return {
+    type: 'DEL_ELEMENT',
+    path,
+  };
+}
+
 export function setType(path, type) {
   let val = null;
 

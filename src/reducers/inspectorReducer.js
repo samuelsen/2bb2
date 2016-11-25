@@ -1,5 +1,25 @@
 import Immutable, { Map } from 'immutable';
 
+function updateName(target, path, name, newName){
+  console.log(newName);
+  return target.updateIn(path,  (val) => {
+    var keys = val.keySeq().toArray();
+
+    var newVal = Map({});
+
+    newVal = newVal.withMutations((map) => {
+      for(var i = 0; i < val.size; i++){
+        if(keys[i] == name)
+          map.set(newName, val.get(keys[i]));
+        else
+          map.set(keys[i], val.get(keys[i]));
+      }
+    });
+
+    return newVal;
+  });
+}
+
 export default function inspectorReducer(state = new Map(), action) {
   switch (action.type) {
     case 'UPDATE_ELEMENT':
@@ -10,8 +30,8 @@ export default function inspectorReducer(state = new Map(), action) {
         target.updateIn(action.path, () => action.newValue)
       );
     case 'UPDATE_NAME':
-      const name = action.path.last();
-      const path = action.path.splice(-1, 1);
+      var name = action.path.last();
+      var path = action.path.splice(-1, 1);
       return state.update('target', target => target.updateIn(path, (val) => {
         const tmp = val.get(name);
         val = val.delete(name);
@@ -26,6 +46,12 @@ export default function inspectorReducer(state = new Map(), action) {
           return target.set('', '');
         }
         return target.push('');
+      }));
+    case 'DEL_ELEMENT':
+      var name = action.path.last();
+      var path = action.path.splice(-1, 1);
+      return state.update('target', target => target.updateIn(path, (val) => {
+        return val.delete(name);
       }));
     case 'COLLAPSIBLE_INIT':
       return state.set('initializeCollapsible', false);
