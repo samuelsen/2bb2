@@ -3,13 +3,20 @@ import Immutable, { Map } from 'immutable';
 function updateName(target, path, name, newName){
   console.log(newName);
   return target.updateIn(path,  (val) => {
-    var i;
-    for(i = 0; i < val._root.entries.length; i++){
-      if(val._root.entries[i][0] == name){
-        val._root.entries[i][0] = newName;
-        return val;
+    var keys = val.keySeq().toArray();
+
+    var newVal = Map({});
+
+    newVal = newVal.withMutations((map) => {
+      for(var i = 0; i < val.size; i++){
+        if(keys[i] == name)
+          map.set(newName, val.get(keys[i]));
+        else
+          map.set(keys[i], val.get(keys[i]));
       }
-    }  
+    });
+
+    return newVal;
   });
 }
 
