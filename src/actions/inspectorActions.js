@@ -9,11 +9,11 @@ export function updateElement(path, newValue) {
   };
 }
 
-export function updateName(path, newName) {
+export function updateName(path, newValue) {
   return {
     type: 'UPDATE_NAME',
     path,
-    newName,
+    newValue,
   };
 }
 
