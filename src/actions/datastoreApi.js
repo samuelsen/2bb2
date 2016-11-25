@@ -49,7 +49,7 @@ export function loadData(text) {
 }
 
 /* Issues a POST-request to the DHIS datastore */
-export function postData(text, body) {
+export function postData(text, body, inCreate) {
   return $.ajax({
     url: `${api}${text}`,
     type: 'POST',
@@ -59,7 +59,9 @@ export function postData(text, body) {
       'Content-Type': 'application/json',
     },
   }).then((data) => {
-    window.location = `/view/${text}`;
+    if (inCreate) {
+      window.location = `/view/${text}`;
+    }
     return data;
   }).fail((jqXHR, textStatus, errorThrown) => {
     console.log(`HTTP Request Failed: ${jqXHR.status}`);

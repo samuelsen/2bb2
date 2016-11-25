@@ -99,7 +99,7 @@ function* createData(action) {
   try {
     const url = `${action.namespace}/${action.key}`;
     const body = action.body;
-    yield call(postData, url, body);
+    yield call(postData, url, body, action.inCreate);
     yield put({
       type: 'DATA_CREATED',
       namespace: action.namespace,

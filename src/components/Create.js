@@ -46,6 +46,7 @@ function mapDispatchToProps(dispatch) {
   return {
     createData: (namespace, key) => dispatch({
       type: 'CREATE_DATA',
+      inCreate: true,
       namespace,
       key,
       body: '{}',

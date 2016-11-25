@@ -39,10 +39,8 @@ class CollapsibleList extends Component {
     return (
       <div>
         {this.props.entries && this.props.entries.map(
-          entry => <AddKeyModal key={entry.namespace} namespace={entry.namespace} />
+          entry => <AddKeyModal key={`modal${entry.namespace}`} namespace={entry.namespace} />
         )}
-        <AddKeyModal namespace="lolz" />
-        <AddKeyModal namespace="hehe" />
         <CollapsibleSearch />
         <ul className="collapsible" data-collapsible="expandable">
           {this.props.entries && this.props.entries.map(

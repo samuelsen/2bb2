@@ -5,30 +5,26 @@ class AddKeyModal extends Component {
   constructor(props) {
     super(props);
     this.save = this.save.bind(this);
-    console.log(this.props);
+    document.modalNeedsInit = true;
   }
 
   props: {
     namespace: string,
     createData: () => {},
+    updateNamespace: () => {},
   }
 
   save(e) {
     e.preventDefault();
     const newKey = document.getElementById(`Key${this.props.namespace}`).value;
     document.getElementById(`Key${this.props.namespace}`).value = '';
-    console.log(newKey);
-    //this.props.createData(this.props.namespace, newKey);
+    this.props.createData(this.props.namespace, newKey);
+    this.props.updateNamespace(this.props.namespace);
   }
 
   render() {
     return (
       <div>
-        {/* TRIGGER */}
-        <a className="modal-trigger waves-effect waves-light btn" href={`#${this.props.namespace}`}>
-          Modal
-        </a>
-        {/* MODAL */}
         <div id={this.props.namespace} className="modal bottom-sheet">
           <form onSubmit={this.save}>
             <div className="modal-content">
@@ -53,9 +49,14 @@ function mapDispatchToProps(dispatch) {
   return {
     createData: (namespace, key) => dispatch({
       type: 'CREATE_DATA',
+      inCreate: false,
       namespace,
       key,
       body: '{}',
+    }),
+    updateNamespace: namespace => dispatch({
+      type: 'FETCH_KEYS',
+      namespace,
     }),
   };
 }
