@@ -6,8 +6,17 @@ import JSONViewer from './Viewers/JSONViewer';
 const $ = require('jquery');
 
 class Inspector extends Component {
+  constructor(props) {
+    super(props);
+    this.setImportValue = this.setImportValue.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchData(this.props.params.namespace, this.props.params.key);
+  }
+
+  setImportValue() {
+    document.getElementById('inserted-json').value = JSON.stringify(this.props.target);
   }
 
   props: {
@@ -74,7 +83,7 @@ class Inspector extends Component {
             >
               Save
         </button>
-            <a className="waves-effect waves-light btn btn-margs red right" href="#modal1">Import</a>
+            <a className="waves-effect waves-light btn btn-margs red right" href="#modal1" onClick={this.setImportValue}>Import</a>
           </div>
         </div>
         <hr />

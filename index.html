@@ -44,6 +44,7 @@
   <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
         document.collapsibleNeedsInit = true;
+        document.modalNeedsInit = true;
 
         $('.button-collapse').sideNav({
           menuWidth: 300, // Default is 240
@@ -60,11 +61,15 @@
             });
             $('.modal').modal();
         });
-        $(document).ready(function(){
-          // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        });
+        function modalInit() {
+          if(document.modalNeedsInit) {
+            $('.modal').modal();
+            document.modalNeedsInit = false;
+          }
+        }
+        setInterval(modalInit, 100);
 
-        function collapsibleInit(){
+        function collapsibleInit() {
             if(document.collapsibleNeedsInit){
                 $('.collapsible').collapsible();
                 $('select').material_select();
