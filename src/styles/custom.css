@@ -75,11 +75,11 @@
 }
 
 .black-link{
-    color: black;
+    color: black !important;
 }
 
 .white-link{
-    color: white;
+    color: white !important;
 }
 
 .btn-red{

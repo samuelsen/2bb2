@@ -15,7 +15,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-wrapper container">
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
             <a href="" class="left" onClick="location.reload();"><i class="medium material-icons">loop</i>Refresh</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/">View namespaces</a></li>
@@ -46,14 +46,21 @@
         document.collapsibleNeedsInit = true;
         document.modalNeedsInit = true;
 
-        $(".button-collapse").sideNav();
+        $('.button-collapse').sideNav({
+          menuWidth: 300, // Default is 240
+          edge: 'right', // Choose the horizontal origin
+          closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+          draggable: true // Choose whether you can drag to open on touch screens
+        }
+      );
+
         $(document).ready(function() {
             $('select').material_select();
             $('.stop-propagation').on('click', function(e){
                 e.stopPropagation();
             });
+            $('.modal').modal();
         });
-
         function modalInit() {
           if(document.modalNeedsInit) {
             $('.modal').modal();
@@ -65,6 +72,7 @@
         function collapsibleInit() {
             if(document.collapsibleNeedsInit){
                 $('.collapsible').collapsible();
+                $('select').material_select();
                 document.collapsibleNeedsInit = false;
             }
         }
