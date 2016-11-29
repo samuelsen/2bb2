@@ -1,26 +1,25 @@
 import Immutable, { Map } from 'immutable';
 
-function updateName(target, path, name, newName){
-  console.log(newName);
-  return target.updateIn(path,  (val) => {
-    var keys = val.keySeq().toArray();
-
-    var newVal = Map({});
-
+function updateName(target, path, name, newName) {
+  return target.updateIn(path, (val) => {
+    const keys = val.keySeq().toArray();
+    let newVal = new Map({});
     newVal = newVal.withMutations((map) => {
-      for(var i = 0; i < val.size; i++){
-        if(keys[i] == name)
+      for (let i = 0; i < val.size; i += 1) {
+        if (keys[i] === name) {
           map.set(newName, val.get(keys[i]));
-        else
+        } else {
           map.set(keys[i], val.get(keys[i]));
+        }
       }
     });
-
     return newVal;
   });
 }
 
 export default function inspectorReducer(state = new Map(), action) {
+  let name;
+  let path;
   switch (action.type) {
     case 'UPDATE_ELEMENT':
       if (action.path.count() === 0) {
@@ -30,12 +29,11 @@ export default function inspectorReducer(state = new Map(), action) {
         target.updateIn(action.path, () => action.newValue)
       );
     case 'UPDATE_NAME':
-      var name = action.path.last();
-      var path = action.path.splice(-1, 1);
+      name = action.path.last();
+      path = action.path.splice(-1, 1);
       return state.update('target', target => target.updateIn(path, (val) => {
         const tmp = val.get(name);
-        val = val.delete(name);
-        return val.set(action.newValue, tmp);
+        return val.delete(name).set(action.newValue, tmp);
       }));
     case 'SET_TARGET':
       return state.set('target', Immutable.fromJS(action.newTarget));
@@ -48,18 +46,15 @@ export default function inspectorReducer(state = new Map(), action) {
         return target.push('');
       }));
     case 'DEL_ELEMENT':
-      var name = action.path.last();
-      var path = action.path.splice(-1, 1);
-      return state.update('target', target => target.updateIn(path, (val) => {
-        return val.delete(name);
-      }));
+      name = action.path.last();
+      path = action.path.splice(-1, 1);
+      return state.update('target', target => target.updateIn(path,
+        val => val.delete(name)
+      ));
     case 'COLLAPSIBLE_INIT':
       return state.set('initializeCollapsible', false);
     case 'DATA_FETCHED':
       document.collapsibleNeedsInit = true;
-      console.log('reducer');
-      console.log(action.data);
-      console.log(Immutable.fromJS(action.data));
       return state.set('target', Immutable.fromJS(action.data));
     default:
       return state;
