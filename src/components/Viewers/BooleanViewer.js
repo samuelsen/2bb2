@@ -6,17 +6,17 @@ import * as InspectorActions from './../../actions/inspectorActions';
 function BooleanViewer(props) {
   const { path, value, updateElement } = props;
 
-  var opts = {};
+  const opts = {};
   if (value) {
-      opts['checked'] = 'checked';
+    opts.checked = 'checked';
   }
 
   return (
     <div>
       <div className="switch">
         <label>
-          <input type="checkbox" onChange={(event) => updateElement(path, !value)} {...opts}/>
-          <span className="lever"></span>
+          <input type="checkbox" onChange={() => updateElement(path, !value)} {...opts} />
+          <span className="lever" />
           {value ? 'True' : 'False'}
         </label>
       </div>

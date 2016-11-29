@@ -6,8 +6,6 @@ import ObjectViewer from './ObjectViewer';
 import ArrayViewer from './ArrayViewer';
 import TypePicker, { getType } from './TypePicker';
 
-const $ = require('jquery');
-
 export default class JSONViewer extends Component {
   getContent() {
     const { path, target } = this.props;
@@ -30,10 +28,6 @@ export default class JSONViewer extends Component {
   props: {
     path: React.PropTypes.object,
     target: React.PropTypes.string,
-  }
-
-  click() {
-    $('.collapsible').collapsible();
   }
 
   render() {

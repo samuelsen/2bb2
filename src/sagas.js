@@ -1,7 +1,9 @@
+/* global Materialize */
 import { takeEvery, delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
 import { loadData, postData, deleteData, putData } from './actions/datastoreApi';
+
 
 /* DATABASE OVERVIEW:
  *

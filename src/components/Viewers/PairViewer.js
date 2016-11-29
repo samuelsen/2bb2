@@ -83,7 +83,7 @@ class PairViewer extends Component {
               <label className="type-padding label col s2">Type:</label>
               <TypePicker path={path} type={getType(value)} />
             </div>
-            <i className="material-icons right" onClick={(event) => delElement(path)}>delete</i>
+            <i className="material-icons right" onClick={() => delElement(path)}>delete</i>
           </div>
         </div>
         <div className="collapsible-body level-down">

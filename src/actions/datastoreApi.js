@@ -1,3 +1,4 @@
+/* global Materialize */
 const basicAuth = `Basic ${btoa('admin:district')}`;
 
 const $ = require('jquery');
@@ -15,8 +16,8 @@ export function putData(text, body) {
       'Content-Type': 'application/json',
     },
   }).then(data => data)
-  .fail((jqXHR, textStatus, errorThrown) => {
-    console.log(`HTTP Request Failed: ${jqXHR.status}`);
+  .fail(() => {
+    Materialize.toast('An error occurred while putting data to store', 4000);
   });
 }
 
@@ -29,8 +30,8 @@ export function deleteData(text) {
       Authorization: basicAuth,
     },
   }).then(data => data)
-  .fail((jqXHR, textStatus, errorThrown) => {
-    console.log(`HTTP Request Failed: ${jqXHR.status}`);
+  .fail(() => {
+    Materialize.toast('An error occurred while deleting data from store', 4000);
   });
 }
 
@@ -43,8 +44,8 @@ export function loadData(text) {
       Authorization: basicAuth,
     },
   }).then(data => data)
-  .fail((jqXHR, textStatus, errorThrown) => {
-    console.log(`HTTP Request Failed: ${jqXHR.status}`);
+  .fail(() => {
+    Materialize.toast('An error occurred while getting data from store', 4000);
   });
 }
 
@@ -63,7 +64,7 @@ export function postData(text, body, inCreate) {
       window.location = `/view/${text}`;
     }
     return data;
-  }).fail((jqXHR, textStatus, errorThrown) => {
-    console.log(`HTTP Request Failed: ${jqXHR.status}`);
+  }).fail(() => {
+    Materialize.toast('An error occurred while posting data to store', 4000);
   });
 }
