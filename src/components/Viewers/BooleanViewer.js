@@ -1,33 +1,37 @@
 import { connect } from 'react-redux';
-import React from 'react';
+import React, { Component } from 'react';
 
 import * as InspectorActions from './../../actions/inspectorActions';
 
-function BooleanViewer(props) {
-  const { path, value, updateElement } = props;
-
-  const opts = {};
-  if (value) {
-    opts.checked = 'checked';
+class BooleanViewer extends Component {
+  constructor(props) {
+    super(props);
+    this.updateChecker = this.updateChecker.bind(this);
   }
 
-  return (
-    <div>
-      <div className="switch extra-padding">
-        <label>
-          <input type="checkbox" onChange={() => updateElement(path, !value)} {...opts} />
-          <span className="lever" />
-          {value ? 'True' : 'False'}
-        </label>
-      </div>
-    </div>
-  );
-}
+  props: {
+    path: React.PropTypes.object,
+    value: React.PropTypes.bool,
+    updateElement: React.PropTypes.func.isRequired,
+  }
 
-BooleanViewer.propTypes = {
-  path: React.PropTypes.object,
-  value: React.PropTypes.bool,
-  updateElement: React.PropTypes.func.isRequired,
-};
+  updateChecker() {
+    this.props.updateElement(this.props.path, !this.props.value);
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="switch extra-padding">
+          <label>
+            <input type="checkbox" onChange={this.updateChecker} checked={this.props.value} />
+            <span className="lever" />
+            {this.props.value ? 'True' : 'False'}
+          </label>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default connect(null, InspectorActions)(BooleanViewer);
