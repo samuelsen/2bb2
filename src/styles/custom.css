@@ -46,7 +46,7 @@
 }
 
 .btn-margs{
-    margin-right: 10px;
+    margin-right: 10px !important;
 }
 
 .btn-margs-top{
