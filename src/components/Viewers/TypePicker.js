@@ -7,12 +7,12 @@ function TypePicker(props) {
   const { path, type, setType } = props;
   return (
     <div className="input-field right col s10">
-      <select id="sel" className="black-link center-align" defaultValue={type} onChange={event => setType(path, event.target.value)}>
-        <option value="string">string</option>
-        <option value="number">number</option>
-        <option value="object">object</option>
+      <select id="sel" className="center-align" defaultValue={type} onChange={event => setType(path, event.target.value)}>
         <option value="array">array</option>
         <option value="boolean">boolean</option>
+        <option value="number">number</option>
+        <option value="object">object</option>
+        <option value="string">string</option>
       </select>
     </div>
   );

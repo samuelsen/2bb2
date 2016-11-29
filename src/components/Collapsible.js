@@ -45,11 +45,23 @@ export default class Collapsible extends Component {
 
 
   render() {
+    const deleteModal = (
+      <div id={`deleteConfirm-${this.props.namespace}`} className="modal">
+        <div className="modal-content">
+          <h4>Delete <b>{this.props.namespace}</b></h4>
+          <p>Do you want to delete the namspace <b>&quot;{this.props.namespace}&quot;</b> ?</p>
+        </div>
+        <div className="modal-footer">
+          <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat btn-margs">No, keep</a>
+          <a href="#!" className=" modal-action modal-close waves-effect waves-green btn red btn-margs" onClick={this.removeNamespace}>Yes, delete</a>
+        </div>
+      </div>);
+
     return (
       <li>
         <div className="right btn-delete">
-          <a href="#deleteNamespace" className="right btn-margs black-link">
-            <i className="material-icons" onClick={this.removeNamespace}>delete</i>
+          <a className="modal-trigger right btn-margs black-link" href={`#deleteConfirm-${this.props.namespace}`}>
+            <i className="material-icons">delete</i>
           </a>
         </div>
         {/* MODAL BUTTON GOES HERE */}
@@ -78,6 +90,7 @@ export default class Collapsible extends Component {
             </p>
           )}
         </div>
+        {deleteModal}
       </li>
     );
   }
