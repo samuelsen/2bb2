@@ -14,14 +14,7 @@ class ObjectViewer extends Component {
   render() {
     const { path, target } = this.props;
 
-    const values = target.keySeq().toArray().sort((a, b) => {
-      if (a === '') {
-        return 1;
-      } else if (b === '') {
-        return -1;
-      }
-      return a > b;
-    });
+    const values = target.keySeq().toArray();
 
     let content = <label>Empty Object</label>;
     if (target.size > 0) {
