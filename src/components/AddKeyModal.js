@@ -35,8 +35,8 @@ class AddKeyModal extends Component {
               </div>
             </div>
             <div className="modal-footer">
-              <a href="#!" className="modal-action modal-close waves-effect waves-light red btn right">Close</a>
-              <input className="btn right waves-effect waves-light green" type="submit" value="Save" />
+              <a href="#!" className="modal-action modal-close waves-effect waves-light red btn right btn-margs">Close</a>
+              <input className="btn right waves-effect waves-light green btn-margs" type="submit" value="Save" />
             </div>
           </form>
         </div>

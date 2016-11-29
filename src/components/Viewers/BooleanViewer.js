@@ -13,7 +13,7 @@ function BooleanViewer(props) {
 
   return (
     <div>
-      <div className="switch">
+      <div className="switch extra-padding">
         <label>
           <input type="checkbox" onChange={() => updateElement(path, !value)} {...opts} />
           <span className="lever" />

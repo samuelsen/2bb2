@@ -75,7 +75,7 @@ class PairViewer extends Component {
 
     return (
       <li>
-        <div className="collapsible-header extra-padding" onClick={this.toggleOpen}>
+        <div className="collapsible-header collapsible-header-padding" onClick={this.toggleOpen}>
           <i className="material-icons">{this.getIcon()}</i>
           <div>
             <span className="col s6">{nameElement}</span>
