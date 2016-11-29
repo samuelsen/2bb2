@@ -75,10 +75,6 @@ class Inspector extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col s12 m6 input-field">
-            <input id="search" type="text" />
-            <label htmlFor="search">Search</label>
-          </div>
           <div className="col s12 m6 right">
             <button className="btn btn-margs waves-effect waves-light red col s5 m4 right" onClick={this.saveValue}>
               Save
