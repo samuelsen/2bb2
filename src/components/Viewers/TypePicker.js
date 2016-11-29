@@ -6,8 +6,8 @@ import * as InspectorActions from './../../actions/inspectorActions';
 function TypePicker(props) {
   const { path, type, setType } = props;
   return (
-    <div className="input-field right col s10">
-      <select id="sel" className="black-link center-align" defaultValue={type} onChange={event => setType(path, event.target.value)}>
+    <div className="right col s10">
+      <select id="sel" className="center-align" defaultValue={type} onChange={event => setType(path, event.target.value)}>
         <option value="string">string</option>
         <option value="number">number</option>
         <option value="object">object</option>
