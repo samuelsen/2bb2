@@ -42,7 +42,6 @@
     <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="/src/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
-  <script type="text/javascript" src="/src/actions/inspectorActions.js"></script>
   <script>
         document.collapsibleNeedsInit = true;
         document.modalNeedsInit = true;
@@ -75,7 +74,6 @@
                 $('.collapsible').collapsible();
                 $('select').material_select();
                 $('#sel').on('change', function(e){
-                   alert('Select Changed');
                    setType(path, e.target.value)
                 });
                 document.collapsibleNeedsInit = false;
