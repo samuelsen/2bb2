@@ -4,12 +4,6 @@ import React from 'react';
 import * as InspectorActions from './../../actions/inspectorActions';
 
 function TypePicker(props) {
-/*
-  componentDidMount() {
-    // Use Materialize custom select input
-    $('#sel').material_select(this._handleSelectChange.bind(this));
-  }
-  */
   const { path, type, setType } = props;
   return (
     <div className="input-field right col s10">
