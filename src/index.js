@@ -9,7 +9,6 @@ import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from './App';
-import Test from './components/Test';
 import Create from './components/Create';
 import Inspector from './components/Inspector';
 import rootReducer from './reducers/rootReducer';
@@ -32,7 +31,6 @@ render(
       <Route path="/" component={App} />
       <Route path="/view/:namespace/:key" component={Inspector} />
       <Route path="/create" component={Create} />
-      <Route path="/test" component={Test} />
     </Router>
   </Provider>,
   document.getElementById('app')
