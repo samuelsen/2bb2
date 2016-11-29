@@ -1,18 +1,19 @@
 import Immutable, { Map } from 'immutable';
 
-function updateName(target, path, name, newName){
+function updateName(target, path, name, newName) {
   console.log(newName);
-  return target.updateIn(path,  (val) => {
-    var keys = val.keySeq().toArray();
+  return target.updateIn(path, (val) => {
+    const keys = val.keySeq().toArray();
 
-    var newVal = Map({});
+    let newVal = Map({});
 
     newVal = newVal.withMutations((map) => {
-      for(var i = 0; i < val.size; i++){
-        if(keys[i] == name)
+      for (let i = 0; i < val.size; i += 1) {
+        if (keys[i] === name) {
           map.set(newName, val.get(keys[i]));
-        else
+        } else {
           map.set(keys[i], val.get(keys[i]));
+        }
       }
     });
 
@@ -30,8 +31,8 @@ export default function inspectorReducer(state = new Map(), action) {
         target.updateIn(action.path, () => action.newValue)
       );
     case 'UPDATE_NAME':
-      var name = action.path.last();
-      var path = action.path.splice(-1, 1);
+      let name = action.path.last();
+      let path = action.path.splice(-1, 1);
       return state.update('target', target => target.updateIn(path, (val) => {
         const tmp = val.get(name);
         val = val.delete(name);
@@ -48,8 +49,8 @@ export default function inspectorReducer(state = new Map(), action) {
         return target.push('');
       }));
     case 'DEL_ELEMENT':
-      var name = action.path.last();
-      var path = action.path.splice(-1, 1);
+      name = action.path.last();
+      path = action.path.splice(-1, 1);
       return state.update('target', target => target.updateIn(path, (val) => {
         return val.delete(name);
       }));
