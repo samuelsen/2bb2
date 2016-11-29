@@ -74,7 +74,6 @@
                 $('.collapsible').collapsible();
                 $('select').material_select();
                 $('#sel').on('change', function(e){
-                   alert('Select Changed');
                    setType(path, e.target.value)
                 });
                 document.collapsibleNeedsInit = false;
