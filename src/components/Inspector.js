@@ -9,6 +9,7 @@ class Inspector extends Component {
   constructor(props) {
     super(props);
     this.setImportValue = this.setImportValue.bind(this);
+    this.saveValue = this.saveValue.bind(this);
   }
 
   componentDidMount() {
@@ -17,6 +18,23 @@ class Inspector extends Component {
 
   setImportValue() {
     document.getElementById('inserted-json').value = JSON.stringify(this.props.target);
+  }
+
+  saveValue() {
+    if (typeof target === 'object') {
+      this.props.putData(
+        this.props.params.namespace,
+        this.props.params.key,
+        JSON.stringify(this.props.target.toJS())
+      );
+      return $('#inserted-json').val(JSON.stringify(this.props.target.toJS()));
+    }
+    this.props.putData(
+      this.props.params.namespace,
+      this.props.params.key,
+      JSON.stringify(this.props.target)
+    );
+    return $('#inserted-json').val(JSON.stringify(this.props.target));
   }
 
   props: {
@@ -46,7 +64,7 @@ class Inspector extends Component {
             Import
           </button>
         </div>
-        </div>
+      </div>
     );
 
     let jsonViewer = <div className="progress white"><div className="indeterminate red" /></div>;
@@ -62,28 +80,10 @@ class Inspector extends Component {
             <label htmlFor="search">Search</label>
           </div>
           <div className="col s12 m6 right">
-            <button
-              className="btn btn-margs waves-effect waves-light red col s5 m4 right"
-              onClick={() => {
-                if (typeof target === 'object') {
-                  this.props.putData(
-                    this.props.params.namespace,
-                    this.props.params.key,
-                    JSON.stringify(target.toJS())
-                  );
-                  return $('#inserted-json').val(JSON.stringify(target.toJS()));
-                }
-                this.props.putData(
-                  this.props.params.namespace,
-                  this.props.params.key,
-                  JSON.stringify(target)
-                );
-                return $('#inserted-json').val(JSON.stringify(target));
-              }}
-            >
+            <button className="btn btn-margs waves-effect waves-light red col s5 m4 right" onClick={this.saveValue}>
               Save
-        </button>
-        <a className="waves-effect waves-light btn btn-margs red col s6 m4 right" href="#modal1" onClick={this.setImportValue}>Import</a>
+            </button>
+            <a className="waves-effect waves-light btn btn-margs red col s6 m4 right" href="#modal1" onClick={this.setImportValue}>Import</a>
           </div>
         </div>
         <hr />
