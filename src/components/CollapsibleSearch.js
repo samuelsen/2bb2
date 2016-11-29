@@ -36,9 +36,12 @@ class CollapsibleSearch extends Component {
   render() {
     return (
       <div className="row">
-        <div className="input-field col s10">
+        <div className="input-field col s9">
           <input id="SearchBox" type="text" onChange={event => this.updateSearch(event.target.value)} />
           <label htmlFor="SearchBox">Search</label>
+        </div>
+        <div className="col s1 center-align">
+          <p>for</p>
         </div>
         <div className="col s2">
           <a className="dropdown-button btn red col s12" href="#B" data-activates="searchCriteria">
