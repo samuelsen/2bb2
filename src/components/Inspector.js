@@ -33,7 +33,7 @@ class Inspector extends Component {
   render() {
     const { target, setTarget } = this.props;
     const modal = (
-      <div id="modal1" className="modal bottom-sheet">
+      <div id="modal1" className="modal bottom-sheet insert-json-modal">
         <div className="modal-content">
           <h4>Insert JSON data</h4>
           <textarea id="inserted-json" className="text-input" />
@@ -46,7 +46,7 @@ class Inspector extends Component {
             Import
           </button>
         </div>
-      </div>
+        </div>
     );
 
     let jsonViewer = <div className="progress white"><div className="indeterminate red" /></div>;
@@ -57,13 +57,13 @@ class Inspector extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col s12">
-            <div className="col s6 input-field">
-              <input id="search" type="text" />
-              <label htmlFor="search">Search</label>
-            </div>
+          <div className="col s12 m6 input-field">
+            <input id="search" type="text" />
+            <label htmlFor="search">Search</label>
+          </div>
+          <div className="col s12 m6 right">
             <button
-              className="btn btn-margs waves-effect waves-light red right"
+              className="btn btn-margs waves-effect waves-light red col s5 m4 right"
               onClick={() => {
                 if (typeof target === 'object') {
                   this.props.putData(
@@ -83,7 +83,7 @@ class Inspector extends Component {
             >
               Save
         </button>
-            <a className="waves-effect waves-light btn btn-margs red right" href="#modal1" onClick={this.setImportValue}>Import</a>
+        <a className="waves-effect waves-light btn btn-margs red col s6 m4 right" href="#modal1" onClick={this.setImportValue}>Import</a>
           </div>
         </div>
         <hr />

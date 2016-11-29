@@ -75,7 +75,7 @@ class PairViewer extends Component {
 
     return (
       <li>
-        <div className="collapsible-header extra-padding" onClick={this.toggleOpen}>
+        <div className="collapsible-header collapsible-header-padding" onClick={this.toggleOpen}>
           <i className="material-icons">{this.getIcon()}</i>
           <div>
             <span className="col s6">{nameElement}</span>
@@ -83,7 +83,7 @@ class PairViewer extends Component {
               <label className="type-padding label col s2">Type:</label>
               <TypePicker path={path} type={getType(value)} />
             </div>
-            <i className="material-icons right" onClick={(event) => delElement(path)}>delete</i>
+            <i className="material-icons right" onClick={() => delElement(path)}>delete</i>
           </div>
         </div>
         <div className="collapsible-body level-down">
