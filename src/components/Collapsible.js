@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ConfirmDelete from './ConfirmDelete';
 
 export default class Collapsible extends Component {
 
@@ -28,14 +29,6 @@ export default class Collapsible extends Component {
     });
   }
 
-  removeNamespace() {
-    this.props.deleteNamespace(this.props.namespace);
-  }
-
-  removeKey(key) {
-    this.props.deleteKey(this.props.namespace, key);
-  }
-
   props: {
     namespace: string,
     ids: string[],
@@ -45,22 +38,10 @@ export default class Collapsible extends Component {
 
 
   render() {
-    const deleteModal = (
-      <div id={`deleteConfirm-${this.props.namespace}`} className="modal">
-        <div className="modal-content">
-          <h4>Delete <b>{this.props.namespace}</b></h4>
-          <p>Do you want to delete the namspace <b>&quot;{this.props.namespace}&quot;</b> ?</p>
-        </div>
-        <div className="modal-footer">
-          <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat btn-margs">No, keep</a>
-          <a href="#!" className=" modal-action modal-close waves-effect waves-green btn red btn-margs" onClick={this.removeNamespace}>Yes, delete</a>
-        </div>
-      </div>);
-
     return (
       <li>
         <div className="right btn-delete">
-          <a className="modal-trigger right btn-margs black-link" href={`#deleteConfirm-${this.props.namespace}`}>
+          <a className="modal-trigger right btn-margs black-link" href={`#deleteConfirm-${this.props.namespace}`.replace(/ /g, '-')}>
             <i className="material-icons">delete</i>
           </a>
         </div>
@@ -75,22 +56,39 @@ export default class Collapsible extends Component {
           <i className="material-icons right collapsible-border">{this.getIcon()}</i>
           {this.props.namespace}
         </div>
+        <ConfirmDelete
+          id={`${this.props.namespace}`}
+          namespace={this.props.namespace}
+          key={null}
+          type={'namespace'}
+          deleteKey={this.props.deleteKey}
+          deleteNamespace={this.props.deleteNamespace}
+        />
         <div className="collapsible-body">
           {this.props.ids.map(id =>
-            <p key={id}>
-              {id}
-              <a href="#deleteKey" className="right btn-margs black-link valign-wrapper" onClick={() => this.removeKey(id)} >
-                <i className="material-icons valign">delete</i>
-                Delete
-              </a>
-              <a href={`view/${this.props.namespace}/${id}`} className="right btn-margs black-link valign-wrapper  btn-border">
-                <i className="material-icons valign">open_in_new</i>
-                View
-              </a>
-            </p>
+            <div>
+              <p>
+                {id}
+                <a className="right btn-margs black-link valign-wrapper modal-trigger" href={`#deleteConfirm-${id}`.replace(/ /g, '-')} >
+                  <i className="material-icons valign">delete</i>
+                  Delete
+                </a>
+                <a href={`view/${this.props.namespace}/${id}`} className="right btn-margs black-link valign-wrapper  btn-border">
+                  <i className="material-icons valign">open_in_new</i>
+                  View
+                </a>
+              </p>
+              <ConfirmDelete
+                id={`${id}`}
+                namespace={this.props.namespace}
+                key2={id}
+                type={'key'}
+                deleteKey={this.props.deleteKey}
+                deleteNamespace={this.props.deleteNamespace}
+              />
+            </div>
           )}
         </div>
-        {deleteModal}
       </li>
     );
   }
