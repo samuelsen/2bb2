@@ -9,8 +9,6 @@ export default class Collapsible extends Component {
       open: false,
     };
     this.toggleOpen = this.toggleOpen.bind(this);
-    this.removeNamespace = this.removeNamespace.bind(this);
-    this.removeKey = this.removeKey.bind(this);
   }
 
   state: {
@@ -66,7 +64,7 @@ export default class Collapsible extends Component {
         />
         <div className="collapsible-body">
           {this.props.ids.map(id =>
-            <div>
+            <div key={id}>
               <p>
                 {id}
                 <a className="right btn-margs black-link valign-wrapper modal-trigger" href={`#deleteConfirm-${id}`.replace(/ /g, '-')} >
