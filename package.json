@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "test": "webpack -d",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+    "test": "webpack -d"
   },
   "repository": {
     "type": "git",
